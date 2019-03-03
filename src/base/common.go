@@ -17,28 +17,28 @@ import (
 
 const (
 	INT_MAX = int(2147483647)
-	TCP_END = "#@"						//解决tpc粘包半包,结束标志
+	TCP_END = "#@" //解决tpc粘包半包,结束标志
 )
 
-const(
-	SIZE_BOOL = unsafe.Sizeof(bool(false))
-	SIZE_INT = unsafe.Sizeof(int(0))
-	SIZE_INT8 = unsafe.Sizeof(int8(0))
-	SIZE_INT16 = unsafe.Sizeof(int16(0))
-	SIZE_INT32 = unsafe.Sizeof(int32(0))
-	SIZE_INT64 = unsafe.Sizeof(int64(0))
-	SIZE_UINT = unsafe.Sizeof(uint(0))
-	SIZE_UINT8 = unsafe.Sizeof(uint8(0))
-	SIZE_UINT16 = unsafe.Sizeof(uint16(0))
-	SIZE_UINT32 = unsafe.Sizeof(uint32(0))
-	SIZE_UINT64 = unsafe.Sizeof(uint64(0))
+const (
+	SIZE_BOOL    = unsafe.Sizeof(bool(false))
+	SIZE_INT     = unsafe.Sizeof(int(0))
+	SIZE_INT8    = unsafe.Sizeof(int8(0))
+	SIZE_INT16   = unsafe.Sizeof(int16(0))
+	SIZE_INT32   = unsafe.Sizeof(int32(0))
+	SIZE_INT64   = unsafe.Sizeof(int64(0))
+	SIZE_UINT    = unsafe.Sizeof(uint(0))
+	SIZE_UINT8   = unsafe.Sizeof(uint8(0))
+	SIZE_UINT16  = unsafe.Sizeof(uint16(0))
+	SIZE_UINT32  = unsafe.Sizeof(uint32(0))
+	SIZE_UINT64  = unsafe.Sizeof(uint64(0))
 	SIZE_FLOAT32 = unsafe.Sizeof(float32(0))
 	SIZE_FLOAT64 = unsafe.Sizeof(float64(0))
-	SIZE_STRING = unsafe.Sizeof(string(0))
-	SIZE_PTR 	= unsafe.Sizeof(uintptr(0))
-)//packet size
+	SIZE_STRING  = unsafe.Sizeof(string(0))
+	SIZE_PTR     = unsafe.Sizeof(uintptr(0))
+) //packet size
 
-var(
+var (
 	SEVERNAME string
 )
 
@@ -48,7 +48,7 @@ func Assert(x bool, y string) {
 	}
 }
 
-func Abs(x float32) float32{
+func Abs(x float32) float32 {
 	return float32(math.Abs(float64(x)))
 }
 
@@ -58,11 +58,11 @@ func IFAssert(x bool, y string) {
 	}
 }
 
-func BIT(x interface{}) interface{}{
+func BIT(x interface{}) interface{} {
 	return (1 << x.(uint32))
 }
 
-func BIT64(x interface{}) interface{}{
+func BIT64(x interface{}) interface{} {
 	return (1 << x.(uint64))
 }
 
@@ -130,13 +130,13 @@ func ByteToFloat64(b []byte) float64 {
 	return math.Float64frombits(bits)
 }
 
-func Htons(n uint16) []byte{
+func Htons(n uint16) []byte {
 	bytes := make([]byte, 2)
 	binary.LittleEndian.PutUint16(bytes, n)
 	return bytes
 }
 
-func Htonl(n uint64) []byte{
+func Htonl(n uint64) []byte {
 	bytes := make([]byte, 8)
 	binary.LittleEndian.PutUint64(bytes, n)
 	return bytes
@@ -149,13 +149,13 @@ func ChechErr(err error) {
 	log.Panicf("错误：%s\n", err.Error())
 }
 
-func GetDBTime(strTime string) *time.Time{
+func GetDBTime(strTime string) *time.Time {
 	DefaultTimeLoc := time.Local
 	loginTime, _ := time.ParseInLocation("2006-01-02 15:04:05", strTime, DefaultTimeLoc)
 	return &loginTime
 }
 
-func PathExists(path string) (bool) {
+func PathExists(path string) bool {
 	_, err := os.Stat(path)
 	if err == nil {
 		return true
@@ -166,23 +166,23 @@ func PathExists(path string) (bool) {
 	return false
 }
 
-func GetSliceTypeString(sTypeName string) string{
+func GetSliceTypeString(sTypeName string) string {
 	index := strings.Index(sTypeName, "]")
-	if index != -1{
+	if index != -1 {
 		sTypeName = sTypeName[index+1:]
 	}
 
 	if sTypeName == "bool" || sTypeName == "float64" || sTypeName == "float32" || sTypeName == "int8" ||
 		sTypeName == "uint8" || sTypeName == "int16" || sTypeName == "uint16" || sTypeName == "int32" ||
-		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" ||  sTypeName == "string"||
+		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" || sTypeName == "string" ||
 		sTypeName == "int" || sTypeName == "uint" ||
 		sTypeName == "*bool" || sTypeName == "*float64" || sTypeName == "*float32" || sTypeName == "*int8" ||
 		sTypeName == "*uint8" || sTypeName == "*int16" || sTypeName == "*uint16" || sTypeName == "*int32" ||
-		sTypeName == "*uint32" || sTypeName == "*int64" || sTypeName == "*uint64" ||  sTypeName == "*string"||
-		sTypeName == "*int" || sTypeName == "*uint"{
+		sTypeName == "*uint32" || sTypeName == "*int64" || sTypeName == "*uint64" || sTypeName == "*string" ||
+		sTypeName == "*int" || sTypeName == "*uint" {
 		return "[]" + sTypeName
-	}else{
-		if strings.Index(sTypeName, "*") != -1{
+	} else {
+		if strings.Index(sTypeName, "*") != -1 {
 			return "[]*struct"
 		}
 		return "[]struct"
@@ -191,23 +191,23 @@ func GetSliceTypeString(sTypeName string) string{
 	return sTypeName
 }
 
-func GetArrayTypeString(sTypeName string) string{
+func GetArrayTypeString(sTypeName string) string {
 	index := strings.Index(sTypeName, "]")
-	if index != -1{
+	if index != -1 {
 		sTypeName = sTypeName[index+1:]
 	}
 
 	if sTypeName == "bool" || sTypeName == "float64" || sTypeName == "float32" || sTypeName == "int8" ||
 		sTypeName == "uint8" || sTypeName == "int16" || sTypeName == "uint16" || sTypeName == "int32" ||
-		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" ||  sTypeName == "string"||
-		sTypeName == "int"  || sTypeName == "uint" ||
+		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" || sTypeName == "string" ||
+		sTypeName == "int" || sTypeName == "uint" ||
 		sTypeName == "*bool" || sTypeName == "*float64" || sTypeName == "*float32" || sTypeName == "*int8" ||
 		sTypeName == "*uint8" || sTypeName == "*int16" || sTypeName == "*uint16" || sTypeName == "*int32" ||
-		sTypeName == "*uint32" || sTypeName == "*int64" || sTypeName == "*uint64" ||  sTypeName == "*string"||
-		sTypeName == "*int" || sTypeName == "*uint"{
+		sTypeName == "*uint32" || sTypeName == "*int64" || sTypeName == "*uint64" || sTypeName == "*string" ||
+		sTypeName == "*int" || sTypeName == "*uint" {
 		return "[*]" + sTypeName
-	}else{
-		if strings.Index(sTypeName, "*") != -1{
+	} else {
+		if strings.Index(sTypeName, "*") != -1 {
 			return "[*]*struct"
 		}
 		return "[*]struct"
@@ -216,36 +216,36 @@ func GetArrayTypeString(sTypeName string) string{
 	return sTypeName
 }
 
-func GetSliceTypeStringEx(sTypeName string) string{
+func GetSliceTypeStringEx(sTypeName string) string {
 	index := strings.Index(sTypeName, "]")
-	if index != -1{
+	if index != -1 {
 		sTypeName = sTypeName[index+1:]
 	}
 
 	if sTypeName == "bool" || sTypeName == "float64" || sTypeName == "float32" || sTypeName == "int8" ||
 		sTypeName == "uint8" || sTypeName == "int16" || sTypeName == "uint16" || sTypeName == "int32" ||
-		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" ||  sTypeName == "string"||
-		sTypeName == "int" || sTypeName == "uint"{
+		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" || sTypeName == "string" ||
+		sTypeName == "int" || sTypeName == "uint" {
 		return "[]" + sTypeName
-	}else{
+	} else {
 		return "[]struct"
 	}
 
 	return sTypeName
 }
 
-func GetArrayTypeStringEx(sTypeName string) string{
+func GetArrayTypeStringEx(sTypeName string) string {
 	index := strings.Index(sTypeName, "]")
-	if index != -1{
+	if index != -1 {
 		sTypeName = sTypeName[index+1:]
 	}
 
 	if sTypeName == "bool" || sTypeName == "float64" || sTypeName == "float32" || sTypeName == "int8" ||
 		sTypeName == "uint8" || sTypeName == "int16" || sTypeName == "uint16" || sTypeName == "int32" ||
-		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" ||  sTypeName == "string"||
-		sTypeName == "int"  || sTypeName == "uint"{
+		sTypeName == "uint32" || sTypeName == "int64" || sTypeName == "uint64" || sTypeName == "string" ||
+		sTypeName == "int" || sTypeName == "uint" {
 		return "[*]" + sTypeName
-	}else{
+	} else {
 		return "[*]struct"
 	}
 
@@ -269,62 +269,62 @@ func ParseTag(sf reflect.StructField, tag string) map[string]string {
 	return setting
 }
 
-func GetClassName(param interface{}) string{
+func GetClassName(param interface{}) string {
 	sType := strings.ToLower(reflect.ValueOf(param).Type().String())
 	index := strings.Index(sType, ".")
-	if index!= -1{
+	if index != -1 {
 		sType = sType[index+1:]
 	}
 	return sType
 }
 
-func GetPacketType(param interface{})string{
+func GetPacketType(param interface{}) string {
 	sType := strings.ToLower(reflect.ValueOf(param).Type().String())
 	index := strings.Index(sType, ".")
-	if index!= -1{
+	if index != -1 {
 		sType = sType[:index]
 	}
 	return sType
 }
 
-func GetTypeString(param interface{}) string{
+func GetTypeString(param interface{}) string {
 	paramType := reflect.TypeOf(param)
 	sType := ""
-	if paramType.Kind() == reflect.Ptr{
+	if paramType.Kind() == reflect.Ptr {
 		sType = "*" + paramType.Elem().Kind().String()
-	}else if paramType.Kind() == reflect.Slice{
+	} else if paramType.Kind() == reflect.Slice {
 		sType = GetSliceTypeString(paramType.String())
-	}else if paramType.Kind() == reflect.Array{
+	} else if paramType.Kind() == reflect.Array {
 		sType = GetArrayTypeString(paramType.String())
-	}else{
+	} else {
 		sType = paramType.Kind().String()
 	}
 	return sType
 }
 
-func GetTypeStringEx(classField reflect.StructField, classVal reflect.Value) string{
+func GetTypeStringEx(classField reflect.StructField, classVal reflect.Value) string {
 	paramType := classField.Type
 	sType := ""
-	if paramType.Kind() == reflect.Ptr{
+	if paramType.Kind() == reflect.Ptr {
 		sType = "*" + paramType.Elem().Kind().String()
-	}else if paramType.Kind() == reflect.Slice{
+	} else if paramType.Kind() == reflect.Slice {
 		sType = GetSliceTypeStringEx(paramType.String())
-	}else if paramType.Kind() == reflect.Array{
+	} else if paramType.Kind() == reflect.Array {
 		sType = GetArrayTypeStringEx(paramType.String())
-	} else{
+	} else {
 		sType = classField.Type.Kind().String()
 	}
 	return sType
 }
 
 //copy name and type is right
-func Copy(source interface{}, dest interface{}){
+func Copy(source interface{}, dest interface{}) {
 	defer func() {
-		if err := recover(); err != nil{
+		if err := recover(); err != nil {
 			fmt.Printf("copy source to dest error")
 		}
 	}()
-	getvaltype := func(val interface{}) (reflect.Value, reflect.Type){
+	getvaltype := func(val interface{}) (reflect.Value, reflect.Type) {
 
 		protoType := reflect.TypeOf(val)
 		protoVal := reflect.ValueOf(val)
@@ -339,23 +339,23 @@ func Copy(source interface{}, dest interface{}){
 	val0, type0 := getvaltype(source)
 	val1, type1 := getvaltype(dest)
 
-	for i := 0; i < type0.NumField(); i++{
-		if !val0.Field(i).CanSet(){//小写成员只有只读
+	for i := 0; i < type0.NumField(); i++ {
+		if !val0.Field(i).CanSet() { //小写成员只有只读
 			continue
 		}
 
-		for j := 0; j < type1.NumField(); j++{
-			if val1.Field(j).Kind() == reflect.Struct{
+		for j := 0; j < type1.NumField(); j++ {
+			if val1.Field(j).Kind() == reflect.Struct {
 				val := val1.Field(j).FieldByName(type0.Field(i).Name)
-				if val.IsValid(){
-					if val.Type() == type0.Field(i).Type{
+				if val.IsValid() {
+					if val.Type() == type0.Field(i).Type {
 						val.Set(val0.Field(i))
 					}
 				}
-			}else{
+			} else {
 				val := val1.FieldByName(type0.Field(i).Name)
-				if val.IsValid(){
-					if val.Type() == type0.Field(i).Type{
+				if val.IsValid() {
+					if val.Type() == type0.Field(i).Type {
 						val.Set(val0.Field(i))
 					}
 				}
@@ -364,41 +364,41 @@ func Copy(source interface{}, dest interface{}){
 	}
 }
 
-func ToLower(name string) string{
+func ToLower(name string) string {
 	return strings.ToLower(name)
 }
 
-func SetTcpEnd(buff []byte) []byte{
+func SetTcpEnd(buff []byte) []byte {
 	buff = append(buff, []byte(TCP_END)...)
 	return buff
 }
 
-func ToHash(str string) uint32{
+func ToHash(str string) uint32 {
 	return crc32.ChecksumIEEE([]byte(str))
 }
 
 //-----------string strconv type-------------//
-func Int(str string) int{
+func Int(str string) int {
 	n, _ := strconv.Atoi(str)
 	return n
 }
 
-func Int64(str string) int64{
+func Int64(str string) int64 {
 	n, _ := strconv.ParseInt(str, 0, 64)
 	return n
 }
 
-func Float32(str string) float32{
+func Float32(str string) float32 {
 	n, _ := strconv.ParseFloat(str, 32)
 	return float32(n)
 }
 
-func Float64(str string) float64{
+func Float64(str string) float64 {
 	n, _ := strconv.ParseFloat(str, 64)
 	return n
 }
 
-func Bool(str string) bool{
+func Bool(str string) bool {
 	n, _ := strconv.ParseBool(str)
 	return n
 }
@@ -406,4 +406,5 @@ func Bool(str string) bool{
 func Time(str string) int64 {
 	return GetDBTime(str).Unix()
 }
+
 //--------------------------------------------//

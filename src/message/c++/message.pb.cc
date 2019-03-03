@@ -197,9 +197,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::Ipacket, ckx_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::Ipacket, id_),
   2,
-  0,
-  3,
   1,
+  3,
+  0,
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::PlayerData, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::PlayerData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -220,8 +220,8 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::W_C_CreatePlayerResponse, error_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::W_C_CreatePlayerResponse, playerid_),
   0,
-  1,
   2,
+  1,
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::W_C_SelectPlayerResponse, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::W_C_SelectPlayerResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -253,10 +253,12 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::A_C_LoginRequest, error_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::A_C_LoginRequest, socketid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::A_C_LoginRequest, accountname_),
-  1,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::message::A_C_LoginRequest, password_),
   2,
   3,
+  4,
   0,
+  1,
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 9, sizeof(::message::Ipacket)},
@@ -264,7 +266,7 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 24, 32, sizeof(::message::W_C_CreatePlayerResponse)},
   { 35, 43, sizeof(::message::W_C_SelectPlayerResponse)},
   { 46, 54, sizeof(::message::A_C_RegisterResponse)},
-  { 57, 66, sizeof(::message::A_C_LoginRequest)},
+  { 57, 67, sizeof(::message::A_C_LoginRequest)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -300,28 +302,28 @@ void AddDescriptorsImpl() {
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\rmessage.proto\022\007message\"P\n\007Ipacket\022\017\n\003S"
       "tx\030\001 \002(\005:\00239\022\026\n\016DestServerType\030\002 \002(\005\022\020\n\003"
-      "Ckx\030\003 \002(\005:\003114\022\n\n\002Id\030\004 \002(\005\"F\n\nPlayerData"
-      "\022\020\n\010PlayerID\030\001 \002(\005\022\022\n\nPlayerName\030\002 \002(\t\022\022"
+      "Ckx\030\003 \002(\005:\003114\022\n\n\002Id\030\004 \002(\003\"F\n\nPlayerData"
+      "\022\020\n\010PlayerID\030\001 \002(\003\022\022\n\nPlayerName\030\002 \002(\t\022\022"
       "\n\nPlayerGold\030\003 \002(\005\"a\n\030W_C_CreatePlayerRe"
       "sponse\022$\n\nPacketHead\030\001 \002(\0132\020.message.Ipa"
-      "cket\022\r\n\005Error\030\002 \002(\005\022\020\n\010PlayerId\030\003 \002(\005\"|\n"
+      "cket\022\r\n\005Error\030\002 \002(\005\022\020\n\010PlayerId\030\003 \002(\003\"|\n"
       "\030W_C_SelectPlayerResponse\022$\n\nPacketHead\030"
       "\001 \002(\0132\020.message.Ipacket\022\021\n\tAccountId\030\002 \002"
-      "(\005\022\'\n\nPlayerData\030\003 \003(\0132\023.message.PlayerD"
+      "(\003\022\'\n\nPlayerData\030\003 \003(\0132\023.message.PlayerD"
       "ata\"]\n\024A_C_RegisterResponse\022$\n\nPacketHea"
       "d\030\001 \002(\0132\020.message.Ipacket\022\r\n\005Error\030\002 \002(\005"
-      "\022\020\n\010SocketId\030\003 \002(\005\"n\n\020A_C_LoginRequest\022$"
-      "\n\nPacketHead\030\001 \002(\0132\020.message.Ipacket\022\r\n\005"
-      "Error\030\002 \002(\005\022\020\n\010SocketId\030\003 \002(\005\022\023\n\013Account"
-      "Name\030\004 \002(\t*f\n\007SERVICE\022\010\n\004NONE\020\000\022\n\n\006CLIEN"
-      "T\020\001\022\016\n\nGATESERVER\020\002\022\021\n\rACCOUNTSERVER\020\003\022\017"
-      "\n\013WORLDSERVER\020\004\022\021\n\rMONITORSERVER\020\005*V\n\004CH"
-      "AT\022\022\n\016MSG_TYPE_WORLD\020\000\022\024\n\020MSG_TYPE_PRIVA"
-      "TE\020\001\022\020\n\014MSG_TYPE_ORG\020\002\022\022\n\016MSG_TYPE_COUNT"
-      "\020\003"
+      "\022\020\n\010SocketId\030\003 \002(\005\"\200\001\n\020A_C_LoginRequest\022"
+      "$\n\nPacketHead\030\001 \002(\0132\020.message.Ipacket\022\r\n"
+      "\005Error\030\002 \002(\005\022\020\n\010SocketId\030\003 \002(\005\022\023\n\013Accoun"
+      "tName\030\004 \002(\t\022\020\n\010Password\030\005 \002(\t*f\n\007SERVICE"
+      "\022\010\n\004NONE\020\000\022\n\n\006CLIENT\020\001\022\016\n\nGATESERVER\020\002\022\021"
+      "\n\rACCOUNTSERVER\020\003\022\017\n\013WORLDSERVER\020\004\022\021\n\rMO"
+      "NITORSERVER\020\005*V\n\004CHAT\022\022\n\016MSG_TYPE_WORLD\020"
+      "\000\022\024\n\020MSG_TYPE_PRIVATE\020\001\022\020\n\014MSG_TYPE_ORG\020"
+      "\002\022\022\n\016MSG_TYPE_COUNT\020\003"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 802);
+      descriptor, 821);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "message.proto", &protobuf_RegisterTypes);
 }
@@ -398,17 +400,17 @@ Ipacket::Ipacket(const Ipacket& from)
       _has_bits_(from._has_bits_),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&destservertype_, &from.destservertype_,
+  ::memcpy(&id_, &from.id_,
     static_cast<size_t>(reinterpret_cast<char*>(&ckx_) -
-    reinterpret_cast<char*>(&destservertype_)) + sizeof(ckx_));
+    reinterpret_cast<char*>(&id_)) + sizeof(ckx_));
   // @@protoc_insertion_point(copy_constructor:message.Ipacket)
 }
 
 void Ipacket::SharedCtor() {
   _cached_size_ = 0;
-  ::memset(&destservertype_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&id_) -
-      reinterpret_cast<char*>(&destservertype_)) + sizeof(id_));
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&destservertype_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(destservertype_));
   stx_ = 39;
   ckx_ = 114;
 }
@@ -452,9 +454,9 @@ void Ipacket::Clear() {
 
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 15u) {
-    ::memset(&destservertype_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&id_) -
-        reinterpret_cast<char*>(&destservertype_)) + sizeof(id_));
+    ::memset(&id_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&destservertype_) -
+        reinterpret_cast<char*>(&id_)) + sizeof(destservertype_));
     stx_ = 39;
     ckx_ = 114;
   }
@@ -514,13 +516,13 @@ bool Ipacket::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 Id = 4;
+      // required int64 Id = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
           set_has_id();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &id_)));
         } else {
           goto handle_unusual;
@@ -561,7 +563,7 @@ void Ipacket::SerializeWithCachedSizes(
   }
 
   // required int32 DestServerType = 2;
-  if (cached_has_bits & 0x00000001u) {
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->destservertype(), output);
   }
 
@@ -570,9 +572,9 @@ void Ipacket::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->ckx(), output);
   }
 
-  // required int32 Id = 4;
-  if (cached_has_bits & 0x00000002u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->id(), output);
+  // required int64 Id = 4;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->id(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -596,7 +598,7 @@ void Ipacket::SerializeWithCachedSizes(
   }
 
   // required int32 DestServerType = 2;
-  if (cached_has_bits & 0x00000001u) {
+  if (cached_has_bits & 0x00000002u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->destservertype(), target);
   }
 
@@ -605,9 +607,9 @@ void Ipacket::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->ckx(), target);
   }
 
-  // required int32 Id = 4;
-  if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->id(), target);
+  // required int64 Id = 4;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->id(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -622,18 +624,18 @@ size_t Ipacket::RequiredFieldsByteSizeFallback() const {
 // @@protoc_insertion_point(required_fields_byte_size_fallback_start:message.Ipacket)
   size_t total_size = 0;
 
+  if (has_id()) {
+    // required int64 Id = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->id());
+  }
+
   if (has_destservertype()) {
     // required int32 DestServerType = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->destservertype());
-  }
-
-  if (has_id()) {
-    // required int32 Id = 4;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->id());
   }
 
   if (has_stx()) {
@@ -662,15 +664,15 @@ size_t Ipacket::ByteSizeLong() const {
         _internal_metadata_.unknown_fields());
   }
   if (((_has_bits_[0] & 0x0000000f) ^ 0x0000000f) == 0) {  // All required fields are present.
+    // required int64 Id = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->id());
+
     // required int32 DestServerType = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->destservertype());
-
-    // required int32 Id = 4;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->id());
 
     // required int32 Stx = 1 [default = 39];
     total_size += 1 +
@@ -717,10 +719,10 @@ void Ipacket::MergeFrom(const Ipacket& from) {
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 15u) {
     if (cached_has_bits & 0x00000001u) {
-      destservertype_ = from.destservertype_;
+      id_ = from.id_;
     }
     if (cached_has_bits & 0x00000002u) {
-      id_ = from.id_;
+      destservertype_ = from.destservertype_;
     }
     if (cached_has_bits & 0x00000004u) {
       stx_ = from.stx_;
@@ -757,8 +759,8 @@ void Ipacket::Swap(Ipacket* other) {
 }
 void Ipacket::InternalSwap(Ipacket* other) {
   using std::swap;
-  swap(destservertype_, other->destservertype_);
   swap(id_, other->id_);
+  swap(destservertype_, other->destservertype_);
   swap(stx_, other->stx_);
   swap(ckx_, other->ckx_);
   swap(_has_bits_[0], other->_has_bits_[0]);
@@ -876,13 +878,13 @@ bool PlayerData::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 PlayerID = 1;
+      // required int64 PlayerID = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
           set_has_playerid();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &playerid_)));
         } else {
           goto handle_unusual;
@@ -947,9 +949,9 @@ void PlayerData::SerializeWithCachedSizes(
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  // required int32 PlayerID = 1;
+  // required int64 PlayerID = 1;
   if (cached_has_bits & 0x00000002u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->playerid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->playerid(), output);
   }
 
   // required string PlayerName = 2;
@@ -982,9 +984,9 @@ void PlayerData::SerializeWithCachedSizes(
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  // required int32 PlayerID = 1;
+  // required int64 PlayerID = 1;
   if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->playerid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->playerid(), target);
   }
 
   // required string PlayerName = 2;
@@ -1023,9 +1025,9 @@ size_t PlayerData::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_playerid()) {
-    // required int32 PlayerID = 1;
+    // required int64 PlayerID = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->playerid());
   }
 
@@ -1053,9 +1055,9 @@ size_t PlayerData::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->playername());
 
-    // required int32 PlayerID = 1;
+    // required int64 PlayerID = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->playerid());
 
     // required int32 PlayerGold = 3;
@@ -1181,17 +1183,17 @@ W_C_CreatePlayerResponse::W_C_CreatePlayerResponse(const W_C_CreatePlayerRespons
   } else {
     packethead_ = NULL;
   }
-  ::memcpy(&error_, &from.error_,
-    static_cast<size_t>(reinterpret_cast<char*>(&playerid_) -
-    reinterpret_cast<char*>(&error_)) + sizeof(playerid_));
+  ::memcpy(&playerid_, &from.playerid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&error_) -
+    reinterpret_cast<char*>(&playerid_)) + sizeof(error_));
   // @@protoc_insertion_point(copy_constructor:message.W_C_CreatePlayerResponse)
 }
 
 void W_C_CreatePlayerResponse::SharedCtor() {
   _cached_size_ = 0;
   ::memset(&packethead_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&playerid_) -
-      reinterpret_cast<char*>(&packethead_)) + sizeof(playerid_));
+      reinterpret_cast<char*>(&error_) -
+      reinterpret_cast<char*>(&packethead_)) + sizeof(error_));
 }
 
 W_C_CreatePlayerResponse::~W_C_CreatePlayerResponse() {
@@ -1238,9 +1240,9 @@ void W_C_CreatePlayerResponse::Clear() {
     packethead_->Clear();
   }
   if (cached_has_bits & 6u) {
-    ::memset(&error_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&playerid_) -
-        reinterpret_cast<char*>(&error_)) + sizeof(playerid_));
+    ::memset(&playerid_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&error_) -
+        reinterpret_cast<char*>(&playerid_)) + sizeof(error_));
   }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
@@ -1282,13 +1284,13 @@ bool W_C_CreatePlayerResponse::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 PlayerId = 3;
+      // required int64 PlayerId = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
           set_has_playerid();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &playerid_)));
         } else {
           goto handle_unusual;
@@ -1330,13 +1332,13 @@ void W_C_CreatePlayerResponse::SerializeWithCachedSizes(
   }
 
   // required int32 Error = 2;
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->error(), output);
   }
 
-  // required int32 PlayerId = 3;
-  if (cached_has_bits & 0x00000004u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->playerid(), output);
+  // required int64 PlayerId = 3;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->playerid(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1362,13 +1364,13 @@ void W_C_CreatePlayerResponse::SerializeWithCachedSizes(
   }
 
   // required int32 Error = 2;
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->error(), target);
   }
 
-  // required int32 PlayerId = 3;
-  if (cached_has_bits & 0x00000004u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->playerid(), target);
+  // required int64 PlayerId = 3;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->playerid(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1390,18 +1392,18 @@ size_t W_C_CreatePlayerResponse::RequiredFieldsByteSizeFallback() const {
         *this->packethead_);
   }
 
+  if (has_playerid()) {
+    // required int64 PlayerId = 3;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->playerid());
+  }
+
   if (has_error()) {
     // required int32 Error = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->error());
-  }
-
-  if (has_playerid()) {
-    // required int32 PlayerId = 3;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->playerid());
   }
 
   return total_size;
@@ -1421,15 +1423,15 @@ size_t W_C_CreatePlayerResponse::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::MessageSize(
         *this->packethead_);
 
+    // required int64 PlayerId = 3;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->playerid());
+
     // required int32 Error = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->error());
-
-    // required int32 PlayerId = 3;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->playerid());
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
@@ -1469,10 +1471,10 @@ void W_C_CreatePlayerResponse::MergeFrom(const W_C_CreatePlayerResponse& from) {
       mutable_packethead()->::message::Ipacket::MergeFrom(from.packethead());
     }
     if (cached_has_bits & 0x00000002u) {
-      error_ = from.error_;
+      playerid_ = from.playerid_;
     }
     if (cached_has_bits & 0x00000004u) {
-      playerid_ = from.playerid_;
+      error_ = from.error_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
@@ -1507,8 +1509,8 @@ void W_C_CreatePlayerResponse::Swap(W_C_CreatePlayerResponse* other) {
 void W_C_CreatePlayerResponse::InternalSwap(W_C_CreatePlayerResponse* other) {
   using std::swap;
   swap(packethead_, other->packethead_);
-  swap(error_, other->error_);
   swap(playerid_, other->playerid_);
+  swap(error_, other->error_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
@@ -1607,7 +1609,7 @@ void W_C_SelectPlayerResponse::Clear() {
     GOOGLE_DCHECK(packethead_ != NULL);
     packethead_->Clear();
   }
-  accountid_ = 0;
+  accountid_ = GOOGLE_LONGLONG(0);
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -1634,13 +1636,13 @@ bool W_C_SelectPlayerResponse::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 AccountId = 2;
+      // required int64 AccountId = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
           set_has_accountid();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &accountid_)));
         } else {
           goto handle_unusual;
@@ -1692,9 +1694,9 @@ void W_C_SelectPlayerResponse::SerializeWithCachedSizes(
       1, *this->packethead_, output);
   }
 
-  // required int32 AccountId = 2;
+  // required int64 AccountId = 2;
   if (cached_has_bits & 0x00000002u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->accountid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->accountid(), output);
   }
 
   // repeated .message.PlayerData PlayerData = 3;
@@ -1726,9 +1728,9 @@ void W_C_SelectPlayerResponse::SerializeWithCachedSizes(
         1, *this->packethead_, deterministic, target);
   }
 
-  // required int32 AccountId = 2;
+  // required int64 AccountId = 2;
   if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->accountid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->accountid(), target);
   }
 
   // repeated .message.PlayerData PlayerData = 3;
@@ -1759,9 +1761,9 @@ size_t W_C_SelectPlayerResponse::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_accountid()) {
-    // required int32 AccountId = 2;
+    // required int64 AccountId = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->accountid());
   }
 
@@ -1782,9 +1784,9 @@ size_t W_C_SelectPlayerResponse::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::MessageSize(
         *this->packethead_);
 
-    // required int32 AccountId = 2;
+    // required int64 AccountId = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->accountid());
 
   } else {
@@ -2267,6 +2269,7 @@ const int A_C_LoginRequest::kPacketHeadFieldNumber;
 const int A_C_LoginRequest::kErrorFieldNumber;
 const int A_C_LoginRequest::kSocketIdFieldNumber;
 const int A_C_LoginRequest::kAccountNameFieldNumber;
+const int A_C_LoginRequest::kPasswordFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 A_C_LoginRequest::A_C_LoginRequest()
@@ -2287,6 +2290,10 @@ A_C_LoginRequest::A_C_LoginRequest(const A_C_LoginRequest& from)
   if (from.has_accountname()) {
     accountname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.accountname_);
   }
+  password_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_password()) {
+    password_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.password_);
+  }
   if (from.has_packethead()) {
     packethead_ = new ::message::Ipacket(*from.packethead_);
   } else {
@@ -2301,6 +2308,7 @@ A_C_LoginRequest::A_C_LoginRequest(const A_C_LoginRequest& from)
 void A_C_LoginRequest::SharedCtor() {
   _cached_size_ = 0;
   accountname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  password_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&packethead_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&socketid_) -
       reinterpret_cast<char*>(&packethead_)) + sizeof(socketid_));
@@ -2313,6 +2321,7 @@ A_C_LoginRequest::~A_C_LoginRequest() {
 
 void A_C_LoginRequest::SharedDtor() {
   accountname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  password_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete packethead_;
 }
 
@@ -2346,17 +2355,21 @@ void A_C_LoginRequest::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 3u) {
+  if (cached_has_bits & 7u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!accountname_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*accountname_.UnsafeRawStringPointer())->clear();
     }
     if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(!password_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*password_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
       GOOGLE_DCHECK(packethead_ != NULL);
       packethead_->Clear();
     }
   }
-  if (cached_has_bits & 12u) {
+  if (cached_has_bits & 24u) {
     ::memset(&error_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&socketid_) -
         reinterpret_cast<char*>(&error_)) + sizeof(socketid_));
@@ -2431,6 +2444,22 @@ bool A_C_LoginRequest::MergePartialFromCodedStream(
         break;
       }
 
+      // required string Password = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_password()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->password().data(), static_cast<int>(this->password().length()),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "message.A_C_LoginRequest.Password");
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -2459,18 +2488,18 @@ void A_C_LoginRequest::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // required .message.Ipacket PacketHead = 1;
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->packethead_, output);
   }
 
   // required int32 Error = 2;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->error(), output);
   }
 
   // required int32 SocketId = 3;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->socketid(), output);
   }
 
@@ -2482,6 +2511,16 @@ void A_C_LoginRequest::SerializeWithCachedSizes(
       "message.A_C_LoginRequest.AccountName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       4, this->accountname(), output);
+  }
+
+  // required string Password = 5;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->password().data(), static_cast<int>(this->password().length()),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message.A_C_LoginRequest.Password");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      5, this->password(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2500,19 +2539,19 @@ void A_C_LoginRequest::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // required .message.Ipacket PacketHead = 1;
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
         1, *this->packethead_, deterministic, target);
   }
 
   // required int32 Error = 2;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000008u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->error(), target);
   }
 
   // required int32 SocketId = 3;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->socketid(), target);
   }
 
@@ -2525,6 +2564,17 @@ void A_C_LoginRequest::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         4, this->accountname(), target);
+  }
+
+  // required string Password = 5;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->password().data(), static_cast<int>(this->password().length()),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message.A_C_LoginRequest.Password");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->password(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2544,6 +2594,13 @@ size_t A_C_LoginRequest::RequiredFieldsByteSizeFallback() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->accountname());
+  }
+
+  if (has_password()) {
+    // required string Password = 5;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->password());
   }
 
   if (has_packethead()) {
@@ -2578,11 +2635,16 @@ size_t A_C_LoginRequest::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         _internal_metadata_.unknown_fields());
   }
-  if (((_has_bits_[0] & 0x0000000f) ^ 0x0000000f) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x0000001f) ^ 0x0000001f) == 0) {  // All required fields are present.
     // required string AccountName = 4;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->accountname());
+
+    // required string Password = 5;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->password());
 
     // required .message.Ipacket PacketHead = 1;
     total_size += 1 +
@@ -2632,18 +2694,22 @@ void A_C_LoginRequest::MergeFrom(const A_C_LoginRequest& from) {
   (void) cached_has_bits;
 
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 15u) {
+  if (cached_has_bits & 31u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_accountname();
       accountname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.accountname_);
     }
     if (cached_has_bits & 0x00000002u) {
-      mutable_packethead()->::message::Ipacket::MergeFrom(from.packethead());
+      set_has_password();
+      password_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.password_);
     }
     if (cached_has_bits & 0x00000004u) {
-      error_ = from.error_;
+      mutable_packethead()->::message::Ipacket::MergeFrom(from.packethead());
     }
     if (cached_has_bits & 0x00000008u) {
+      error_ = from.error_;
+    }
+    if (cached_has_bits & 0x00000010u) {
       socketid_ = from.socketid_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -2665,7 +2731,7 @@ void A_C_LoginRequest::CopyFrom(const A_C_LoginRequest& from) {
 }
 
 bool A_C_LoginRequest::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
   if (has_packethead()) {
     if (!this->packethead_->IsInitialized()) return false;
   }
@@ -2679,6 +2745,7 @@ void A_C_LoginRequest::Swap(A_C_LoginRequest* other) {
 void A_C_LoginRequest::InternalSwap(A_C_LoginRequest* other) {
   using std::swap;
   accountname_.Swap(&other->accountname_);
+  password_.Swap(&other->password_);
   swap(packethead_, other->packethead_);
   swap(error_, other->error_);
   swap(socketid_, other->socketid_);

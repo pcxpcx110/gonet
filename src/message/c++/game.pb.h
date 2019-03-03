@@ -1398,12 +1398,12 @@ class W_C_LoginMap : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::message::Point3F* mutable_pos();
   void set_allocated_pos(::message::Point3F* pos);
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   bool has_id() const;
   void clear_id();
   static const int kIdFieldNumber = 2;
-  ::google::protobuf::int32 id() const;
-  void set_id(::google::protobuf::int32 value);
+  ::google::protobuf::int64 id() const;
+  void set_id(::google::protobuf::int64 value);
 
   // required float Rotation = 4;
   bool has_rotation() const;
@@ -1431,7 +1431,7 @@ class W_C_LoginMap : public ::google::protobuf::Message /* @@protoc_insertion_po
   mutable int _cached_size_;
   ::message::Ipacket* packethead_;
   ::message::Point3F* pos_;
-  ::google::protobuf::int32 id_;
+  ::google::protobuf::int64 id_;
   float rotation_;
   friend struct ::protobuf_game_2eproto::TableStruct;
   friend void ::protobuf_game_2eproto::InitDefaultsW_C_LoginMapImpl();
@@ -1545,12 +1545,12 @@ class W_C_Move : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::message::Point3F* mutable_pos();
   void set_allocated_pos(::message::Point3F* pos);
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   bool has_id() const;
   void clear_id();
   static const int kIdFieldNumber = 2;
-  ::google::protobuf::int32 id() const;
-  void set_id(::google::protobuf::int32 value);
+  ::google::protobuf::int64 id() const;
+  void set_id(::google::protobuf::int64 value);
 
   // required float Rotation = 4;
   bool has_rotation() const;
@@ -1578,7 +1578,7 @@ class W_C_Move : public ::google::protobuf::Message /* @@protoc_insertion_point(
   mutable int _cached_size_;
   ::message::Ipacket* packethead_;
   ::message::Point3F* pos_;
-  ::google::protobuf::int32 id_;
+  ::google::protobuf::int64 id_;
   float rotation_;
   friend struct ::protobuf_game_2eproto::TableStruct;
   friend void ::protobuf_game_2eproto::InitDefaultsW_C_MoveImpl();
@@ -1692,12 +1692,12 @@ class W_C_ADD_SIMOBJ : public ::google::protobuf::Message /* @@protoc_insertion_
   ::message::Point3F* mutable_pos();
   void set_allocated_pos(::message::Point3F* pos);
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   bool has_id() const;
   void clear_id();
   static const int kIdFieldNumber = 2;
-  ::google::protobuf::int32 id() const;
-  void set_id(::google::protobuf::int32 value);
+  ::google::protobuf::int64 id() const;
+  void set_id(::google::protobuf::int64 value);
 
   // required float Rotation = 4;
   bool has_rotation() const;
@@ -1725,7 +1725,7 @@ class W_C_ADD_SIMOBJ : public ::google::protobuf::Message /* @@protoc_insertion_
   mutable int _cached_size_;
   ::message::Ipacket* packethead_;
   ::message::Point3F* pos_;
-  ::google::protobuf::int32 id_;
+  ::google::protobuf::int64 id_;
   float rotation_;
   friend struct ::protobuf_game_2eproto::TableStruct;
   friend void ::protobuf_game_2eproto::InitDefaultsW_C_ADD_SIMOBJImpl();
@@ -3108,7 +3108,7 @@ inline void W_C_LoginMap::set_allocated_packethead(::message::Ipacket* packethea
   // @@protoc_insertion_point(field_set_allocated:message.W_C_LoginMap.PacketHead)
 }
 
-// required int32 Id = 2;
+// required int64 Id = 2;
 inline bool W_C_LoginMap::has_id() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -3119,14 +3119,14 @@ inline void W_C_LoginMap::clear_has_id() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void W_C_LoginMap::clear_id() {
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
   clear_has_id();
 }
-inline ::google::protobuf::int32 W_C_LoginMap::id() const {
+inline ::google::protobuf::int64 W_C_LoginMap::id() const {
   // @@protoc_insertion_point(field_get:message.W_C_LoginMap.Id)
   return id_;
 }
-inline void W_C_LoginMap::set_id(::google::protobuf::int32 value) {
+inline void W_C_LoginMap::set_id(::google::protobuf::int64 value) {
   set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:message.W_C_LoginMap.Id)
@@ -3264,7 +3264,7 @@ inline void W_C_Move::set_allocated_packethead(::message::Ipacket* packethead) {
   // @@protoc_insertion_point(field_set_allocated:message.W_C_Move.PacketHead)
 }
 
-// required int32 Id = 2;
+// required int64 Id = 2;
 inline bool W_C_Move::has_id() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -3275,14 +3275,14 @@ inline void W_C_Move::clear_has_id() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void W_C_Move::clear_id() {
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
   clear_has_id();
 }
-inline ::google::protobuf::int32 W_C_Move::id() const {
+inline ::google::protobuf::int64 W_C_Move::id() const {
   // @@protoc_insertion_point(field_get:message.W_C_Move.Id)
   return id_;
 }
-inline void W_C_Move::set_id(::google::protobuf::int32 value) {
+inline void W_C_Move::set_id(::google::protobuf::int64 value) {
   set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:message.W_C_Move.Id)
@@ -3420,7 +3420,7 @@ inline void W_C_ADD_SIMOBJ::set_allocated_packethead(::message::Ipacket* packeth
   // @@protoc_insertion_point(field_set_allocated:message.W_C_ADD_SIMOBJ.PacketHead)
 }
 
-// required int32 Id = 2;
+// required int64 Id = 2;
 inline bool W_C_ADD_SIMOBJ::has_id() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -3431,14 +3431,14 @@ inline void W_C_ADD_SIMOBJ::clear_has_id() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void W_C_ADD_SIMOBJ::clear_id() {
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
   clear_has_id();
 }
-inline ::google::protobuf::int32 W_C_ADD_SIMOBJ::id() const {
+inline ::google::protobuf::int64 W_C_ADD_SIMOBJ::id() const {
   // @@protoc_insertion_point(field_get:message.W_C_ADD_SIMOBJ.Id)
   return id_;
 }
-inline void W_C_ADD_SIMOBJ::set_id(::google::protobuf::int32 value) {
+inline void W_C_ADD_SIMOBJ::set_id(::google::protobuf::int64 value) {
   set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:message.W_C_ADD_SIMOBJ.Id)

@@ -1,44 +1,45 @@
 package message
 
 import (
-	"fmt"
-	"reflect"
-	"github.com/golang/protobuf/proto"
 	"base"
-	"strings"
+	"fmt"
 	"log"
+	"reflect"
+	"strings"
+
+	"github.com/golang/protobuf/proto"
 )
 
-var(
-	Packet_CreateFactorStringMap map[string] func()proto.Message
-	Packet_CreateFactorMap map[uint32] func()proto.Message
-	Packet_CreateFactorInit bool
+var (
+	Packet_CreateFactorStringMap map[string]func() proto.Message
+	Packet_CreateFactorMap       map[uint32]func() proto.Message
+	Packet_CreateFactorInit      bool
 )
 
 func parseTypeElem(val reflect.Value, packetHead **Ipacket) {
 	sType := strings.ToLower(val.Type().String())
 	index := strings.Index(sType, ".")
-	if index!= -1{
+	if index != -1 {
 		sType = sType[:index]
 	}
 
 	switch sType {
 	case "*message":
-		if !val.IsNil(){
+		if !val.IsNil() {
 			value := val.Elem().Interface()
 			parseTypeStruct(value, packetHead)
 		}
 	}
 }
 
-func setPacketHead(packetHead **Ipacket, TypeName string, protoVal reflect.Value) bool{
-	if TypeName == "PacketHead"{
+func setPacketHead(packetHead **Ipacket, TypeName string, protoVal reflect.Value) bool {
+	if TypeName == "PacketHead" {
 		*packetHead = protoVal.Interface().(*Ipacket)
 		//*packetHead.DestServerType = *protoVal.Elem().FieldByName("DestServerType").Interface().(*int32)
 		//*packetHead.Stx = *protoVal.Elem().FieldByName("Stx").Interface().(*int32)
 		//*packetHead.Ckx = *protoVal.Elem().FieldByName("Ckx").Interface().(*int32)
 		//*packetHead.Id = *protoVal.Elem().FieldByName("Id").Interface().(*int64)
-	}else{
+	} else {
 		return false
 	}
 	/*if TypeName == "DestServerType"{
@@ -70,27 +71,27 @@ func parseTypeStruct(message interface{}, packetHead **Ipacket) {
 		protoVal = reflect.ValueOf(message).Elem()
 	}
 
-	for i := 0; i < protoType.NumField(); i++{
-		if !setPacketHead(packetHead, protoType.Field(i).Name, protoVal.Field(i)){
+	for i := 0; i < protoType.NumField(); i++ {
+		if !setPacketHead(packetHead, protoType.Field(i).Name, protoVal.Field(i)) {
 			parseTypeElem(protoVal.Field(i), packetHead)
-		}else{
+		} else {
 			break
 		}
 	}
 }
 
-func GetPakcetHead(message interface{}) *Ipacket{
-	packetHead := BuildPacketHead( 0, 0)
+func GetPakcetHead(message interface{}) *Ipacket {
+	packetHead := BuildPacketHead(0, 0)
 	parseTypeStruct(message, &packetHead)
 	return packetHead
 }
 
-func BuildPacketHead(id int64, destservertype int) *Ipacket{
+func BuildPacketHead(id int64, destservertype int) *Ipacket {
 	ipacket := &Ipacket{
-		Stx:	proto.Int32(Default_Ipacket_Stx),
-		DestServerType:	proto.Int32(int32(destservertype)),
-		Ckx:	proto.Int32(Default_Ipacket_Ckx),
-		Id:	proto.Int64(id),
+		Stx:            proto.Int32(Default_Ipacket_Stx),
+		DestServerType: proto.Int32(int32(destservertype)),
+		Ckx:            proto.Int32(Default_Ipacket_Ckx),
+		Id:             proto.Int64(id),
 	}
 	return ipacket
 }
@@ -110,23 +111,26 @@ func BuildPacketHead(id int64, destservertype int) *Ipacket{
 	return data
 }*/
 
-func GetMessageName(packet proto.Message) string{
+func GetMessageName(packet proto.Message) string {
 	sType := strings.ToLower(proto.MessageName(packet))
 	index := strings.Index(sType, ".")
-	if index!= -1{
+	if index != -1 {
 		sType = sType[index+1:]
 	}
 	return sType
 }
 
-func Encode(packet proto.Message) []byte{
+func Encode(packet proto.Message) []byte {
+	// fmt.Println("GetMessageName..............", GetMessageName(packet))
 	packetId := base.GetMessageCode1(GetMessageName(packet))
-	buff,_ := proto.Marshal(packet)
+	// fmt.Println("GetMessageCode1..............", packetId)
+	buff, _ := proto.Marshal(packet)
 	data := append(base.IntToBytes(int(packetId)), buff...)
+	// fmt.Println("Encode......data........", data)
 	return data
 }
 
-func Decode(buff []byte) (uint32, []byte){
+func Decode(buff []byte) (uint32, []byte) {
 	packetId := uint32(base.BytesToInt(buff[0:4]))
 	return packetId, buff[4:]
 }
@@ -137,7 +141,7 @@ func GetProtoBufPacket(packet proto.Message, bitstream *base.BitStream) bool {
 	{
 		sType := strings.ToLower(reflect.ValueOf(packet).Type().String())
 		index := strings.Index(sType, ".")
-		if index!= -1{
+		if index != -1 {
 			sType = sType[:index]
 		}
 		switch sType {
@@ -154,7 +158,7 @@ func GetProtoBufPacket(packet proto.Message, bitstream *base.BitStream) bool {
 
 func RegisterPacket(packet proto.Message) {
 	packetName := GetMessageName(packet)
-	packetFunc := func() proto.Message{
+	packetFunc := func() proto.Message {
 		packet := reflect.New(reflect.ValueOf(packet).Elem().Type()).Interface().(proto.Message)
 		return packet
 	}
@@ -169,10 +173,10 @@ func RegisterPacket1(packetName string, packetFunc func() proto.Message) {
 	Packet_CreateFactorMap[base.GetMessageCode1(packetName)] = packetFunc
 }
 
-func GetPakcet(packetId uint32) proto.Message{
-	if !Packet_CreateFactorInit{
-		Packet_CreateFactorStringMap = make(map[string] func()proto.Message)
-		Packet_CreateFactorMap 		 = make(map[uint32] func()proto.Message)
+func GetPakcet(packetId uint32) proto.Message {
+	if !Packet_CreateFactorInit {
+		Packet_CreateFactorStringMap = make(map[string]func() proto.Message)
+		Packet_CreateFactorMap = make(map[uint32]func() proto.Message)
 
 		//注册消息
 		RegisterPacket(&C_A_LoginRequest{})
@@ -195,15 +199,15 @@ func GetPakcet(packetId uint32) proto.Message{
 		Packet_CreateFactorInit = true
 	}
 
-	packetFunc,exist := Packet_CreateFactorMap[packetId]
-	if exist{
+	packetFunc, exist := Packet_CreateFactorMap[packetId]
+	if exist {
 		return packetFunc()
 	}
 
-	return nil;
+	return nil
 }
 
-func GetPakcetByName(packetName string) proto.Message{
+func GetPakcetByName(packetName string) proto.Message {
 	return GetPakcet(base.GetMessageCode1(packetName))
 }
 

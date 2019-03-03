@@ -1,7 +1,5 @@
 package base
 
-import "fmt"
-
 //----------------bitsream---------------
 //for example
 //buf := make([]byte, 256)
@@ -13,11 +11,11 @@ import "fmt"
 //----------------------------------------
 
 const (
-	Bit8   = 8
-	Bit16  = 16
-	Bit32  = 32
-	Bit64  = 64
-	Bit128 = 128
+	Bit8       = 8
+	Bit16      = 16
+	Bit32      = 32
+	Bit64      = 64
+	Bit128     = 128
 	MAX_PACKET = 128 * 1024
 )
 
@@ -134,11 +132,12 @@ func (this *BitStream) clear() {
 	this.dataPtr = buff
 }
 
-func (this *BitStream) resize() bool{
-	fmt.Println("BitStream Resize")
+func (this *BitStream) resize() bool {
+	// fmt.Println("BitStream Resize")
 	this.dataPtr = append(this.dataPtr, make([]byte, this.bitsLimite)...)
+	// fmt.Println("this.bitsLimite......", this.bitsLimite)
 	size := this.bitsLimite * 2
-	if size <= 0 && size >= MAX_PACKET * 10{
+	if size <= 0 && size >= MAX_PACKET*10 {
 		return false
 	}
 	this.bufSize = size
@@ -164,7 +163,7 @@ func (this *BitStream) WriteBits(bitCount int, bitPtr []byte) {
 	}
 
 	if bitCount+this.bitNum > this.maxWriteBitNum {
-		if !this.resize(){
+		if !this.resize() {
 			this.error = true
 			Assert(false, "Out of range write")
 			return
@@ -182,6 +181,7 @@ func (this *BitStream) ReadBits(bitCount int, bitPtr []byte) {
 	if bitCount == 0 {
 		return
 	}
+	// fmt.Println("ReadBits.............", bitCount)
 
 	if this.tailFlag {
 		this.error = true
@@ -193,15 +193,20 @@ func (this *BitStream) ReadBits(bitCount int, bitPtr []byte) {
 		bitCount = (bitCount & ^0x7) + 8
 	}
 
+	// fmt.Println("this.bitNum...............", this.bitNum)
+	// fmt.Println("bitCount...............", bitCount)
+	// fmt.Println("this.maxReadBitNum...............", this.maxReadBitNum)
 	if bitCount+this.bitNum > this.maxReadBitNum {
-		if !this.resize(){
+		if !this.resize() {
 			this.error = true
 			Assert(false, "Out of range read")
 			return
 		}
 	}
-
+	// fmt.Println("this.dataPtr..............", this.dataPtr)
+	// fmt.Println("this.bitNum...............", this.bitNum)
 	byteCount := (bitCount + 7) >> 3
+	// fmt.Println("byteCount...............", byteCount)
 	stPtr := this.dataPtr[(this.bitNum >> 3) : (this.bitNum>>3)+byteCount]
 	for i, v := range stPtr[:] {
 		bitPtr[i] = v
@@ -214,6 +219,7 @@ func (this *BitStream) WriteInt(value int, bitCount int) {
 }
 
 func (this *BitStream) ReadInt(bitCount int) int {
+	// fmt.Println("ReadInt...............")
 	var ret int
 	buf := make([]byte, 4)
 	this.ReadBits(bitCount, buf)
@@ -228,14 +234,15 @@ func (this *BitStream) ReadInt(bitCount int) int {
 }
 
 func (this *BitStream) ReadFlag() bool {
+	// fmt.Println("ReadFlag.............")
 	if ((this.flagNum - (this.flagNum>>3)<<3) == 0) && !this.tailFlag {
 		this.flagNum = this.bitNum
 		if this.bitNum+8 < this.maxReadBitNum {
 			this.bitNum += 8
 		} else {
-			if !this.resize(){
+			if !this.resize() {
 				this.tailFlag = true
-			}else{
+			} else {
 				this.bitNum += 8
 			}
 		}
@@ -248,6 +255,7 @@ func (this *BitStream) ReadFlag() bool {
 	}
 
 	mask := 1 << uint32(this.flagNum&0x7)
+	// fmt.Println("this.dataPtr.............", this.dataPtr)
 	ret := (int(this.dataPtr[(this.flagNum>>3)]) & mask) != 0
 	this.flagNum++
 	return ret
@@ -260,9 +268,9 @@ func (this *BitStream) WriteFlag(val bool) bool {
 		if this.bitNum+8 < this.maxWriteBitNum {
 			this.bitNum += 8 //Ray; 跳开8个用于写flag
 		} else {
-			if !this.resize(){
+			if !this.resize() {
 				this.tailFlag = true
-			}else {
+			} else {
 				this.bitNum += 8 //Ray; 跳开8个用于写flag
 			}
 		}
@@ -284,9 +292,11 @@ func (this *BitStream) WriteFlag(val bool) bool {
 }
 
 func (this *BitStream) ReadString() string {
+	// fmt.Println("ReadString.............")
 	if this.ReadFlag() {
-		nLen := this.ReadInt(Bit16)
+		nLen := this.ReadInt(Bit8)
 		buf := make([]byte, nLen)
+		// fmt.Println("nLen............", nLen)
 		this.ReadBits(nLen<<3, buf)
 		return string(buf)
 	}
@@ -298,7 +308,7 @@ func (this *BitStream) WriteString(str string) {
 	nLen := len(buf)
 
 	if this.WriteFlag(nLen > 0) {
-		this.WriteInt(nLen, Bit16)
+		this.WriteInt(nLen, Bit8)
 		this.WriteBits(nLen<<3, buf)
 	}
 }

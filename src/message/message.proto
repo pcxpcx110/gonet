@@ -53,5 +53,5 @@ required Ipacket PacketHead = 1;
 required int32  Error = 2;
 required int32  SocketId = 3;
 required string AccountName = 4;
-//required string Password = 5;
+required string Password = 5;
 }

@@ -221,19 +221,19 @@ class Ipacket : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
+  // required int64 Id = 4;
+  bool has_id() const;
+  void clear_id();
+  static const int kIdFieldNumber = 4;
+  ::google::protobuf::int64 id() const;
+  void set_id(::google::protobuf::int64 value);
+
   // required int32 DestServerType = 2;
   bool has_destservertype() const;
   void clear_destservertype();
   static const int kDestServerTypeFieldNumber = 2;
   ::google::protobuf::int32 destservertype() const;
   void set_destservertype(::google::protobuf::int32 value);
-
-  // required int32 Id = 4;
-  bool has_id() const;
-  void clear_id();
-  static const int kIdFieldNumber = 4;
-  ::google::protobuf::int32 id() const;
-  void set_id(::google::protobuf::int32 value);
 
   // required int32 Stx = 1 [default = 39];
   bool has_stx() const;
@@ -266,8 +266,8 @@ class Ipacket : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
+  ::google::protobuf::int64 id_;
   ::google::protobuf::int32 destservertype_;
-  ::google::protobuf::int32 id_;
   ::google::protobuf::int32 stx_;
   ::google::protobuf::int32 ckx_;
   friend struct ::protobuf_message_2eproto::TableStruct;
@@ -379,12 +379,12 @@ class PlayerData : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_playername();
   void set_allocated_playername(::std::string* playername);
 
-  // required int32 PlayerID = 1;
+  // required int64 PlayerID = 1;
   bool has_playerid() const;
   void clear_playerid();
   static const int kPlayerIDFieldNumber = 1;
-  ::google::protobuf::int32 playerid() const;
-  void set_playerid(::google::protobuf::int32 value);
+  ::google::protobuf::int64 playerid() const;
+  void set_playerid(::google::protobuf::int64 value);
 
   // required int32 PlayerGold = 3;
   bool has_playergold() const;
@@ -409,7 +409,7 @@ class PlayerData : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr playername_;
-  ::google::protobuf::int32 playerid_;
+  ::google::protobuf::int64 playerid_;
   ::google::protobuf::int32 playergold_;
   friend struct ::protobuf_message_2eproto::TableStruct;
   friend void ::protobuf_message_2eproto::InitDefaultsPlayerDataImpl();
@@ -514,19 +514,19 @@ class W_C_CreatePlayerResponse : public ::google::protobuf::Message /* @@protoc_
   ::message::Ipacket* mutable_packethead();
   void set_allocated_packethead(::message::Ipacket* packethead);
 
+  // required int64 PlayerId = 3;
+  bool has_playerid() const;
+  void clear_playerid();
+  static const int kPlayerIdFieldNumber = 3;
+  ::google::protobuf::int64 playerid() const;
+  void set_playerid(::google::protobuf::int64 value);
+
   // required int32 Error = 2;
   bool has_error() const;
   void clear_error();
   static const int kErrorFieldNumber = 2;
   ::google::protobuf::int32 error() const;
   void set_error(::google::protobuf::int32 value);
-
-  // required int32 PlayerId = 3;
-  bool has_playerid() const;
-  void clear_playerid();
-  static const int kPlayerIdFieldNumber = 3;
-  ::google::protobuf::int32 playerid() const;
-  void set_playerid(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:message.W_C_CreatePlayerResponse)
  private:
@@ -544,8 +544,8 @@ class W_C_CreatePlayerResponse : public ::google::protobuf::Message /* @@protoc_
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::message::Ipacket* packethead_;
+  ::google::protobuf::int64 playerid_;
   ::google::protobuf::int32 error_;
-  ::google::protobuf::int32 playerid_;
   friend struct ::protobuf_message_2eproto::TableStruct;
   friend void ::protobuf_message_2eproto::InitDefaultsW_C_CreatePlayerResponseImpl();
 };
@@ -661,12 +661,12 @@ class W_C_SelectPlayerResponse : public ::google::protobuf::Message /* @@protoc_
   ::message::Ipacket* mutable_packethead();
   void set_allocated_packethead(::message::Ipacket* packethead);
 
-  // required int32 AccountId = 2;
+  // required int64 AccountId = 2;
   bool has_accountid() const;
   void clear_accountid();
   static const int kAccountIdFieldNumber = 2;
-  ::google::protobuf::int32 accountid() const;
-  void set_accountid(::google::protobuf::int32 value);
+  ::google::protobuf::int64 accountid() const;
+  void set_accountid(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:message.W_C_SelectPlayerResponse)
  private:
@@ -683,7 +683,7 @@ class W_C_SelectPlayerResponse : public ::google::protobuf::Message /* @@protoc_
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::message::PlayerData > playerdata_;
   ::message::Ipacket* packethead_;
-  ::google::protobuf::int32 accountid_;
+  ::google::protobuf::int64 accountid_;
   friend struct ::protobuf_message_2eproto::TableStruct;
   friend void ::protobuf_message_2eproto::InitDefaultsW_C_SelectPlayerResponseImpl();
 };
@@ -928,6 +928,21 @@ class A_C_LoginRequest : public ::google::protobuf::Message /* @@protoc_insertio
   ::std::string* release_accountname();
   void set_allocated_accountname(::std::string* accountname);
 
+  // required string Password = 5;
+  bool has_password() const;
+  void clear_password();
+  static const int kPasswordFieldNumber = 5;
+  const ::std::string& password() const;
+  void set_password(const ::std::string& value);
+  #if LANG_CXX11
+  void set_password(::std::string&& value);
+  #endif
+  void set_password(const char* value);
+  void set_password(const char* value, size_t size);
+  ::std::string* mutable_password();
+  ::std::string* release_password();
+  void set_allocated_password(::std::string* password);
+
   // required .message.Ipacket PacketHead = 1;
   bool has_packethead() const;
   void clear_packethead();
@@ -961,6 +976,8 @@ class A_C_LoginRequest : public ::google::protobuf::Message /* @@protoc_insertio
   void clear_has_socketid();
   void set_has_accountname();
   void clear_has_accountname();
+  void set_has_password();
+  void clear_has_password();
 
   // helper for ByteSizeLong()
   size_t RequiredFieldsByteSizeFallback() const;
@@ -969,6 +986,7 @@ class A_C_LoginRequest : public ::google::protobuf::Message /* @@protoc_insertio
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr accountname_;
+  ::google::protobuf::internal::ArenaStringPtr password_;
   ::message::Ipacket* packethead_;
   ::google::protobuf::int32 error_;
   ::google::protobuf::int32 socketid_;
@@ -1012,13 +1030,13 @@ inline void Ipacket::set_stx(::google::protobuf::int32 value) {
 
 // required int32 DestServerType = 2;
 inline bool Ipacket::has_destservertype() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
+  return (_has_bits_[0] & 0x00000002u) != 0;
 }
 inline void Ipacket::set_has_destservertype() {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
 }
 inline void Ipacket::clear_has_destservertype() {
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Ipacket::clear_destservertype() {
   destservertype_ = 0;
@@ -1058,25 +1076,25 @@ inline void Ipacket::set_ckx(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:message.Ipacket.Ckx)
 }
 
-// required int32 Id = 4;
+// required int64 Id = 4;
 inline bool Ipacket::has_id() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
 inline void Ipacket::set_has_id() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000001u;
 }
 inline void Ipacket::clear_has_id() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Ipacket::clear_id() {
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
   clear_has_id();
 }
-inline ::google::protobuf::int32 Ipacket::id() const {
+inline ::google::protobuf::int64 Ipacket::id() const {
   // @@protoc_insertion_point(field_get:message.Ipacket.Id)
   return id_;
 }
-inline void Ipacket::set_id(::google::protobuf::int32 value) {
+inline void Ipacket::set_id(::google::protobuf::int64 value) {
   set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:message.Ipacket.Id)
@@ -1086,7 +1104,7 @@ inline void Ipacket::set_id(::google::protobuf::int32 value) {
 
 // PlayerData
 
-// required int32 PlayerID = 1;
+// required int64 PlayerID = 1;
 inline bool PlayerData::has_playerid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1097,14 +1115,14 @@ inline void PlayerData::clear_has_playerid() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void PlayerData::clear_playerid() {
-  playerid_ = 0;
+  playerid_ = GOOGLE_LONGLONG(0);
   clear_has_playerid();
 }
-inline ::google::protobuf::int32 PlayerData::playerid() const {
+inline ::google::protobuf::int64 PlayerData::playerid() const {
   // @@protoc_insertion_point(field_get:message.PlayerData.PlayerID)
   return playerid_;
 }
-inline void PlayerData::set_playerid(::google::protobuf::int32 value) {
+inline void PlayerData::set_playerid(::google::protobuf::int64 value) {
   set_has_playerid();
   playerid_ = value;
   // @@protoc_insertion_point(field_set:message.PlayerData.PlayerID)
@@ -1257,13 +1275,13 @@ inline void W_C_CreatePlayerResponse::set_allocated_packethead(::message::Ipacke
 
 // required int32 Error = 2;
 inline bool W_C_CreatePlayerResponse::has_error() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void W_C_CreatePlayerResponse::set_has_error() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void W_C_CreatePlayerResponse::clear_has_error() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void W_C_CreatePlayerResponse::clear_error() {
   error_ = 0;
@@ -1279,25 +1297,25 @@ inline void W_C_CreatePlayerResponse::set_error(::google::protobuf::int32 value)
   // @@protoc_insertion_point(field_set:message.W_C_CreatePlayerResponse.Error)
 }
 
-// required int32 PlayerId = 3;
+// required int64 PlayerId = 3;
 inline bool W_C_CreatePlayerResponse::has_playerid() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000002u) != 0;
 }
 inline void W_C_CreatePlayerResponse::set_has_playerid() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000002u;
 }
 inline void W_C_CreatePlayerResponse::clear_has_playerid() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void W_C_CreatePlayerResponse::clear_playerid() {
-  playerid_ = 0;
+  playerid_ = GOOGLE_LONGLONG(0);
   clear_has_playerid();
 }
-inline ::google::protobuf::int32 W_C_CreatePlayerResponse::playerid() const {
+inline ::google::protobuf::int64 W_C_CreatePlayerResponse::playerid() const {
   // @@protoc_insertion_point(field_get:message.W_C_CreatePlayerResponse.PlayerId)
   return playerid_;
 }
-inline void W_C_CreatePlayerResponse::set_playerid(::google::protobuf::int32 value) {
+inline void W_C_CreatePlayerResponse::set_playerid(::google::protobuf::int64 value) {
   set_has_playerid();
   playerid_ = value;
   // @@protoc_insertion_point(field_set:message.W_C_CreatePlayerResponse.PlayerId)
@@ -1361,7 +1379,7 @@ inline void W_C_SelectPlayerResponse::set_allocated_packethead(::message::Ipacke
   // @@protoc_insertion_point(field_set_allocated:message.W_C_SelectPlayerResponse.PacketHead)
 }
 
-// required int32 AccountId = 2;
+// required int64 AccountId = 2;
 inline bool W_C_SelectPlayerResponse::has_accountid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1372,14 +1390,14 @@ inline void W_C_SelectPlayerResponse::clear_has_accountid() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void W_C_SelectPlayerResponse::clear_accountid() {
-  accountid_ = 0;
+  accountid_ = GOOGLE_LONGLONG(0);
   clear_has_accountid();
 }
-inline ::google::protobuf::int32 W_C_SelectPlayerResponse::accountid() const {
+inline ::google::protobuf::int64 W_C_SelectPlayerResponse::accountid() const {
   // @@protoc_insertion_point(field_get:message.W_C_SelectPlayerResponse.AccountId)
   return accountid_;
 }
-inline void W_C_SelectPlayerResponse::set_accountid(::google::protobuf::int32 value) {
+inline void W_C_SelectPlayerResponse::set_accountid(::google::protobuf::int64 value) {
   set_has_accountid();
   accountid_ = value;
   // @@protoc_insertion_point(field_set:message.W_C_SelectPlayerResponse.AccountId)
@@ -1527,13 +1545,13 @@ inline void A_C_RegisterResponse::set_socketid(::google::protobuf::int32 value) 
 
 // required .message.Ipacket PacketHead = 1;
 inline bool A_C_LoginRequest::has_packethead() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void A_C_LoginRequest::set_has_packethead() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void A_C_LoginRequest::clear_has_packethead() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void A_C_LoginRequest::clear_packethead() {
   if (packethead_ != NULL) packethead_->Clear();
@@ -1581,13 +1599,13 @@ inline void A_C_LoginRequest::set_allocated_packethead(::message::Ipacket* packe
 
 // required int32 Error = 2;
 inline bool A_C_LoginRequest::has_error() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void A_C_LoginRequest::set_has_error() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void A_C_LoginRequest::clear_has_error() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void A_C_LoginRequest::clear_error() {
   error_ = 0;
@@ -1605,13 +1623,13 @@ inline void A_C_LoginRequest::set_error(::google::protobuf::int32 value) {
 
 // required int32 SocketId = 3;
 inline bool A_C_LoginRequest::has_socketid() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void A_C_LoginRequest::set_has_socketid() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void A_C_LoginRequest::clear_has_socketid() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void A_C_LoginRequest::clear_socketid() {
   socketid_ = 0;
@@ -1688,6 +1706,69 @@ inline void A_C_LoginRequest::set_allocated_accountname(::std::string* accountna
   }
   accountname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), accountname);
   // @@protoc_insertion_point(field_set_allocated:message.A_C_LoginRequest.AccountName)
+}
+
+// required string Password = 5;
+inline bool A_C_LoginRequest::has_password() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void A_C_LoginRequest::set_has_password() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void A_C_LoginRequest::clear_has_password() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void A_C_LoginRequest::clear_password() {
+  password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_password();
+}
+inline const ::std::string& A_C_LoginRequest::password() const {
+  // @@protoc_insertion_point(field_get:message.A_C_LoginRequest.Password)
+  return password_.GetNoArena();
+}
+inline void A_C_LoginRequest::set_password(const ::std::string& value) {
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.A_C_LoginRequest.Password)
+}
+#if LANG_CXX11
+inline void A_C_LoginRequest::set_password(::std::string&& value) {
+  set_has_password();
+  password_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:message.A_C_LoginRequest.Password)
+}
+#endif
+inline void A_C_LoginRequest::set_password(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.A_C_LoginRequest.Password)
+}
+inline void A_C_LoginRequest::set_password(const char* value, size_t size) {
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.A_C_LoginRequest.Password)
+}
+inline ::std::string* A_C_LoginRequest::mutable_password() {
+  set_has_password();
+  // @@protoc_insertion_point(field_mutable:message.A_C_LoginRequest.Password)
+  return password_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* A_C_LoginRequest::release_password() {
+  // @@protoc_insertion_point(field_release:message.A_C_LoginRequest.Password)
+  clear_has_password();
+  return password_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void A_C_LoginRequest::set_allocated_password(::std::string* password) {
+  if (password != NULL) {
+    set_has_password();
+  } else {
+    clear_has_password();
+  }
+  password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
+  // @@protoc_insertion_point(field_set_allocated:message.A_C_LoginRequest.Password)
 }
 
 #ifdef __GNUC__

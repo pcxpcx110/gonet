@@ -3,6 +3,7 @@ package netgate
 import (
 	"actor"
 	"base"
+	"fmt"
 	"strings"
 )
 
@@ -21,12 +22,14 @@ func (this *UserServerProcess) Init(num int) {
 	this.Actor.Start()
 }
 
-func (this *UserServerProcess) PacketFunc(id int, buff []byte) bool{
+func (this *UserServerProcess) PacketFunc(id int, buff []byte) bool {
 	/*packetId,_ := message.Decode(buff)
 	packet := message.GetPakcet(packetId)
 	if packet != nil{
 		return false
 	}*/
+
+	fmt.Println("UserServerProcess....PacketFunc.....")
 	var io actor.CallIO
 	io.Buff = buff
 	io.SocketId = id
@@ -34,8 +37,10 @@ func (this *UserServerProcess) PacketFunc(id int, buff []byte) bool{
 	bitstream := base.NewBitStream(io.Buff, len(io.Buff))
 	funcName := bitstream.ReadString()
 	funcName = strings.ToLower(funcName)
+	fmt.Println("UserServerProcess...funcName....................", funcName)
 	pFunc := this.FindCall(funcName)
-	if pFunc != nil{
+	fmt.Println("UserServerProcess...pFunc....................", pFunc)
+	if pFunc != nil {
 		this.Send(io)
 		return true
 	}

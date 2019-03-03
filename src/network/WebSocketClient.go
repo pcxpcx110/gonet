@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+
 	"golang.org/x/net/websocket"
 )
 
@@ -13,13 +14,13 @@ type IWebSocketClient interface {
 
 type WebSocketClient struct {
 	Socket
-	m_pServer     *WebSocket
-	m_WriteChan   chan []byte
-	m_WebConn *websocket.Conn
+	m_pServer   *WebSocket
+	m_WriteChan chan []byte
+	m_WebConn   *websocket.Conn
 }
 
 func (this *WebSocketClient) Start() bool {
-	if this.m_nState != SSF_SHUT_DOWN{
+	if this.m_nState != SSF_SHUT_DOWN {
 		return false
 	}
 
@@ -36,18 +37,18 @@ func (this *WebSocketClient) Start() bool {
 
 func (this *WebSocketClient) Send(buff []byte) int {
 	defer func() {
-		if err := recover(); err != nil{
+		if err := recover(); err != nil {
 			fmt.Println("WebSocketClient Send", err)
 		}
 	}()
 
-	if this.m_Conn == nil{
+	if this.m_WebConn == nil {
 		return 0
 	}
 
-	if len(buff) > this.m_MaxSendBufferSize{
-		log.Print(" SendError size",len(buff))
-		return  0
+	if len(buff) > this.m_MaxSendBufferSize {
+		log.Print(" SendError size", len(buff))
+		return 0
 	}
 
 	n, err := this.m_WebConn.Write(buff)
@@ -58,10 +59,10 @@ func (this *WebSocketClient) Send(buff []byte) int {
 	return 0
 }
 
-func (this *WebSocketClient) ReceivePacket(Id int, buff []byte){
+func (this *WebSocketClient) ReceivePacket(Id int, buff []byte) {
 	if this.m_PacketFuncList.Len() > 0 {
 		this.Socket.ReceivePacket(this.m_ClientId, buff)
-	}else if (this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0){
+	} else if this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0 {
 		this.m_pServer.Socket.ReceivePacket(this.m_ClientId, buff)
 	}
 }
@@ -70,13 +71,13 @@ func (this *WebSocketClient) OnNetFail(error int) {
 	this.Stop()
 	if this.m_PacketFuncList.Len() > 0 {
 		this.CallMsg("DISCONNECT", this.m_ClientId)
-	}else if (this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0){
+	} else if this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0 {
 		this.m_pServer.CallMsg("DISCONNECT", this.m_ClientId)
 	}
 }
 
 func (this *WebSocketClient) Close() {
-	if this.m_WebConn != nil{
+	if this.m_WebConn != nil {
 		this.m_WebConn.Close()
 	}
 	this.m_WebConn = nil
@@ -93,7 +94,6 @@ func (this *WebSocketClient) SendNoBlock(buff []byte) {
 			fmt.Println("WriteBuf", err)
 		}
 	}()
-
 
 	select {
 	case this.m_WriteChan <- buff: //chan满后再写即阻塞，select进入default分支报错
@@ -137,7 +137,7 @@ func wserverclientRoutine(pClient *WebSocketClient) bool {
 func wserverclientWriteRoutine(pClient *WebSocketClient) bool {
 	for {
 		select {
-		case buff := <-pClient.m_WriteChan :
+		case buff := <-pClient.m_WriteChan:
 			pClient.Send(buff)
 		}
 

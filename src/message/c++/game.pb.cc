@@ -581,13 +581,13 @@ void AddDescriptorsImpl() {
       "(\0132\020.message.Point3F\022\036\n\004EPos\030\002 \002(\0132\020.mes"
       "sage.Point3F\022\020\n\010Duration\030\003 \002(\005\022\017\n\007TimePo"
       "s\030\004 \002(\005\"q\n\014W_C_LoginMap\022$\n\nPacketHead\030\001 "
-      "\002(\0132\020.message.Ipacket\022\n\n\002Id\030\002 \002(\005\022\035\n\003Pos"
+      "\002(\0132\020.message.Ipacket\022\n\n\002Id\030\002 \002(\003\022\035\n\003Pos"
       "\030\003 \002(\0132\020.message.Point3F\022\020\n\010Rotation\030\004 \002"
       "(\002\"m\n\010W_C_Move\022$\n\nPacketHead\030\001 \002(\0132\020.mes"
-      "sage.Ipacket\022\n\n\002Id\030\002 \002(\005\022\035\n\003Pos\030\003 \002(\0132\020."
+      "sage.Ipacket\022\n\n\002Id\030\002 \002(\003\022\035\n\003Pos\030\003 \002(\0132\020."
       "message.Point3F\022\020\n\010Rotation\030\004 \002(\002\"s\n\016W_C"
       "_ADD_SIMOBJ\022$\n\nPacketHead\030\001 \002(\0132\020.messag"
-      "e.Ipacket\022\n\n\002Id\030\002 \002(\005\022\035\n\003Pos\030\003 \002(\0132\020.mes"
+      "e.Ipacket\022\n\n\002Id\030\002 \002(\003\022\035\n\003Pos\030\003 \002(\0132\020.mes"
       "sage.Point3F\022\020\n\010Rotation\030\004 \002(\002\"H\n\020C_W_Lo"
       "ginCopyMap\022$\n\nPacketHead\030\001 \002(\0132\020.message"
       ".Ipacket\022\016\n\006DataId\030\002 \002(\005"
@@ -4023,13 +4023,13 @@ bool W_C_LoginMap::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 Id = 2;
+      // required int64 Id = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
           set_has_id();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &id_)));
         } else {
           goto handle_unusual;
@@ -4096,9 +4096,9 @@ void W_C_LoginMap::SerializeWithCachedSizes(
       1, *this->packethead_, output);
   }
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   if (cached_has_bits & 0x00000004u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->id(), output);
   }
 
   // required .message.Point3F Pos = 3;
@@ -4134,9 +4134,9 @@ void W_C_LoginMap::SerializeWithCachedSizes(
         1, *this->packethead_, deterministic, target);
   }
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   if (cached_has_bits & 0x00000004u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->id(), target);
   }
 
   // required .message.Point3F Pos = 3;
@@ -4178,9 +4178,9 @@ size_t W_C_LoginMap::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_id()) {
-    // required int32 Id = 2;
+    // required int64 Id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
   }
 
@@ -4211,9 +4211,9 @@ size_t W_C_LoginMap::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::MessageSize(
         *this->pos_);
 
-    // required int32 Id = 2;
+    // required int64 Id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
 
     // required float Rotation = 4;
@@ -4452,13 +4452,13 @@ bool W_C_Move::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 Id = 2;
+      // required int64 Id = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
           set_has_id();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &id_)));
         } else {
           goto handle_unusual;
@@ -4525,9 +4525,9 @@ void W_C_Move::SerializeWithCachedSizes(
       1, *this->packethead_, output);
   }
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   if (cached_has_bits & 0x00000004u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->id(), output);
   }
 
   // required .message.Point3F Pos = 3;
@@ -4563,9 +4563,9 @@ void W_C_Move::SerializeWithCachedSizes(
         1, *this->packethead_, deterministic, target);
   }
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   if (cached_has_bits & 0x00000004u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->id(), target);
   }
 
   // required .message.Point3F Pos = 3;
@@ -4607,9 +4607,9 @@ size_t W_C_Move::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_id()) {
-    // required int32 Id = 2;
+    // required int64 Id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
   }
 
@@ -4640,9 +4640,9 @@ size_t W_C_Move::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::MessageSize(
         *this->pos_);
 
-    // required int32 Id = 2;
+    // required int64 Id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
 
     // required float Rotation = 4;
@@ -4881,13 +4881,13 @@ bool W_C_ADD_SIMOBJ::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 Id = 2;
+      // required int64 Id = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
           set_has_id();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &id_)));
         } else {
           goto handle_unusual;
@@ -4954,9 +4954,9 @@ void W_C_ADD_SIMOBJ::SerializeWithCachedSizes(
       1, *this->packethead_, output);
   }
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   if (cached_has_bits & 0x00000004u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->id(), output);
   }
 
   // required .message.Point3F Pos = 3;
@@ -4992,9 +4992,9 @@ void W_C_ADD_SIMOBJ::SerializeWithCachedSizes(
         1, *this->packethead_, deterministic, target);
   }
 
-  // required int32 Id = 2;
+  // required int64 Id = 2;
   if (cached_has_bits & 0x00000004u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->id(), target);
   }
 
   // required .message.Point3F Pos = 3;
@@ -5036,9 +5036,9 @@ size_t W_C_ADD_SIMOBJ::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_id()) {
-    // required int32 Id = 2;
+    // required int64 Id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
   }
 
@@ -5069,9 +5069,9 @@ size_t W_C_ADD_SIMOBJ::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::MessageSize(
         *this->pos_);
 
-    // required int32 Id = 2;
+    // required int64 Id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
 
     // required float Rotation = 4;

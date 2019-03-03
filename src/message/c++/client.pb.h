@@ -37,7 +37,7 @@ namespace protobuf_client_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[7];
+  static const ::google::protobuf::internal::ParseTable schema[8];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -57,6 +57,8 @@ void InitDefaultsC_G_LogoutResponseImpl();
 void InitDefaultsC_G_LogoutResponse();
 void InitDefaultsC_W_ChatMessageImpl();
 void InitDefaultsC_W_ChatMessage();
+void InitDefaultsW_C_ChatMessageImpl();
+void InitDefaultsW_C_ChatMessage();
 inline void InitDefaults() {
   InitDefaultsC_A_LoginRequest();
   InitDefaultsC_A_LoginRequest1();
@@ -65,6 +67,7 @@ inline void InitDefaults() {
   InitDefaultsC_W_Game_LoginRequset();
   InitDefaultsC_G_LogoutResponse();
   InitDefaultsC_W_ChatMessage();
+  InitDefaultsW_C_ChatMessage();
 }
 }  // namespace protobuf_client_2eproto
 namespace message {
@@ -89,6 +92,9 @@ extern C_W_CreatePlayerRequestDefaultTypeInternal _C_W_CreatePlayerRequest_defau
 class C_W_Game_LoginRequset;
 class C_W_Game_LoginRequsetDefaultTypeInternal;
 extern C_W_Game_LoginRequsetDefaultTypeInternal _C_W_Game_LoginRequset_default_instance_;
+class W_C_ChatMessage;
+class W_C_ChatMessageDefaultTypeInternal;
+extern W_C_ChatMessageDefaultTypeInternal _W_C_ChatMessage_default_instance_;
 }  // namespace message
 namespace message {
 
@@ -213,6 +219,21 @@ class C_A_LoginRequest : public ::google::protobuf::Message /* @@protoc_insertio
   ::std::string* release_buildno();
   void set_allocated_buildno(::std::string* buildno);
 
+  // required string Password = 5;
+  bool has_password() const;
+  void clear_password();
+  static const int kPasswordFieldNumber = 5;
+  const ::std::string& password() const;
+  void set_password(const ::std::string& value);
+  #if LANG_CXX11
+  void set_password(::std::string&& value);
+  #endif
+  void set_password(const char* value);
+  void set_password(const char* value, size_t size);
+  ::std::string* mutable_password();
+  ::std::string* release_password();
+  void set_allocated_password(::std::string* password);
+
   // required .message.Ipacket PacketHead = 1;
   bool has_packethead() const;
   void clear_packethead();
@@ -239,6 +260,8 @@ class C_A_LoginRequest : public ::google::protobuf::Message /* @@protoc_insertio
   void clear_has_buildno();
   void set_has_socketid();
   void clear_has_socketid();
+  void set_has_password();
+  void clear_has_password();
 
   // helper for ByteSizeLong()
   size_t RequiredFieldsByteSizeFallback() const;
@@ -248,6 +271,7 @@ class C_A_LoginRequest : public ::google::protobuf::Message /* @@protoc_insertio
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr accountname_;
   ::google::protobuf::internal::ArenaStringPtr buildno_;
+  ::google::protobuf::internal::ArenaStringPtr password_;
   ::message::Ipacket* packethead_;
   ::google::protobuf::int32 socketid_;
   friend struct ::protobuf_client_2eproto::TableStruct;
@@ -471,6 +495,21 @@ class C_A_RegisterRequest : public ::google::protobuf::Message /* @@protoc_inser
   ::std::string* release_accountname();
   void set_allocated_accountname(::std::string* accountname);
 
+  // required string Password = 4;
+  bool has_password() const;
+  void clear_password();
+  static const int kPasswordFieldNumber = 4;
+  const ::std::string& password() const;
+  void set_password(const ::std::string& value);
+  #if LANG_CXX11
+  void set_password(::std::string&& value);
+  #endif
+  void set_password(const char* value);
+  void set_password(const char* value, size_t size);
+  ::std::string* mutable_password();
+  ::std::string* release_password();
+  void set_allocated_password(::std::string* password);
+
   // required .message.Ipacket PacketHead = 1;
   bool has_packethead() const;
   void clear_packethead();
@@ -495,6 +534,8 @@ class C_A_RegisterRequest : public ::google::protobuf::Message /* @@protoc_inser
   void clear_has_accountname();
   void set_has_socketid();
   void clear_has_socketid();
+  void set_has_password();
+  void clear_has_password();
 
   // helper for ByteSizeLong()
   size_t RequiredFieldsByteSizeFallback() const;
@@ -503,6 +544,7 @@ class C_A_RegisterRequest : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr accountname_;
+  ::google::protobuf::internal::ArenaStringPtr password_;
   ::message::Ipacket* packethead_;
   ::google::protobuf::int32 socketid_;
   friend struct ::protobuf_client_2eproto::TableStruct;
@@ -751,12 +793,12 @@ class C_W_Game_LoginRequset : public ::google::protobuf::Message /* @@protoc_ins
   ::message::Ipacket* mutable_packethead();
   void set_allocated_packethead(::message::Ipacket* packethead);
 
-  // required int32 PlayerId = 2;
+  // required int64 PlayerId = 2;
   bool has_playerid() const;
   void clear_playerid();
   static const int kPlayerIdFieldNumber = 2;
-  ::google::protobuf::int32 playerid() const;
-  void set_playerid(::google::protobuf::int32 value);
+  ::google::protobuf::int64 playerid() const;
+  void set_playerid(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:message.C_W_Game_LoginRequset)
  private:
@@ -772,7 +814,7 @@ class C_W_Game_LoginRequset : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::message::Ipacket* packethead_;
-  ::google::protobuf::int32 playerid_;
+  ::google::protobuf::int64 playerid_;
   friend struct ::protobuf_client_2eproto::TableStruct;
   friend void ::protobuf_client_2eproto::InitDefaultsC_W_Game_LoginRequsetImpl();
 };
@@ -1003,19 +1045,19 @@ class C_W_ChatMessage : public ::google::protobuf::Message /* @@protoc_insertion
   ::message::Ipacket* mutable_packethead();
   void set_allocated_packethead(::message::Ipacket* packethead);
 
-  // required int32 Sender = 2;
+  // required int64 Sender = 2;
   bool has_sender() const;
   void clear_sender();
   static const int kSenderFieldNumber = 2;
-  ::google::protobuf::int32 sender() const;
-  void set_sender(::google::protobuf::int32 value);
+  ::google::protobuf::int64 sender() const;
+  void set_sender(::google::protobuf::int64 value);
 
-  // required int32 Recver = 3;
+  // required int64 Recver = 3;
   bool has_recver() const;
   void clear_recver();
   static const int kRecverFieldNumber = 3;
-  ::google::protobuf::int32 recver() const;
-  void set_recver(::google::protobuf::int32 value);
+  ::google::protobuf::int64 recver() const;
+  void set_recver(::google::protobuf::int64 value);
 
   // required int32 MessageType = 4;
   bool has_messagetype() const;
@@ -1045,11 +1087,210 @@ class C_W_ChatMessage : public ::google::protobuf::Message /* @@protoc_insertion
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr message_;
   ::message::Ipacket* packethead_;
-  ::google::protobuf::int32 sender_;
-  ::google::protobuf::int32 recver_;
+  ::google::protobuf::int64 sender_;
+  ::google::protobuf::int64 recver_;
   ::google::protobuf::int32 messagetype_;
   friend struct ::protobuf_client_2eproto::TableStruct;
   friend void ::protobuf_client_2eproto::InitDefaultsC_W_ChatMessageImpl();
+};
+// -------------------------------------------------------------------
+
+class W_C_ChatMessage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:message.W_C_ChatMessage) */ {
+ public:
+  W_C_ChatMessage();
+  virtual ~W_C_ChatMessage();
+
+  W_C_ChatMessage(const W_C_ChatMessage& from);
+
+  inline W_C_ChatMessage& operator=(const W_C_ChatMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  W_C_ChatMessage(W_C_ChatMessage&& from) noexcept
+    : W_C_ChatMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline W_C_ChatMessage& operator=(W_C_ChatMessage&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const W_C_ChatMessage& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const W_C_ChatMessage* internal_default_instance() {
+    return reinterpret_cast<const W_C_ChatMessage*>(
+               &_W_C_ChatMessage_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    7;
+
+  void Swap(W_C_ChatMessage* other);
+  friend void swap(W_C_ChatMessage& a, W_C_ChatMessage& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline W_C_ChatMessage* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  W_C_ChatMessage* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const W_C_ChatMessage& from);
+  void MergeFrom(const W_C_ChatMessage& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(W_C_ChatMessage* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required string SenderName = 3;
+  bool has_sendername() const;
+  void clear_sendername();
+  static const int kSenderNameFieldNumber = 3;
+  const ::std::string& sendername() const;
+  void set_sendername(const ::std::string& value);
+  #if LANG_CXX11
+  void set_sendername(::std::string&& value);
+  #endif
+  void set_sendername(const char* value);
+  void set_sendername(const char* value, size_t size);
+  ::std::string* mutable_sendername();
+  ::std::string* release_sendername();
+  void set_allocated_sendername(::std::string* sendername);
+
+  // required string RecverName = 5;
+  bool has_recvername() const;
+  void clear_recvername();
+  static const int kRecverNameFieldNumber = 5;
+  const ::std::string& recvername() const;
+  void set_recvername(const ::std::string& value);
+  #if LANG_CXX11
+  void set_recvername(::std::string&& value);
+  #endif
+  void set_recvername(const char* value);
+  void set_recvername(const char* value, size_t size);
+  ::std::string* mutable_recvername();
+  ::std::string* release_recvername();
+  void set_allocated_recvername(::std::string* recvername);
+
+  // required string Message = 7;
+  bool has_message() const;
+  void clear_message();
+  static const int kMessageFieldNumber = 7;
+  const ::std::string& message() const;
+  void set_message(const ::std::string& value);
+  #if LANG_CXX11
+  void set_message(::std::string&& value);
+  #endif
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
+  ::std::string* mutable_message();
+  ::std::string* release_message();
+  void set_allocated_message(::std::string* message);
+
+  // required .message.Ipacket PacketHead = 1;
+  bool has_packethead() const;
+  void clear_packethead();
+  static const int kPacketHeadFieldNumber = 1;
+  const ::message::Ipacket& packethead() const;
+  ::message::Ipacket* release_packethead();
+  ::message::Ipacket* mutable_packethead();
+  void set_allocated_packethead(::message::Ipacket* packethead);
+
+  // required int64 Sender = 2;
+  bool has_sender() const;
+  void clear_sender();
+  static const int kSenderFieldNumber = 2;
+  ::google::protobuf::int64 sender() const;
+  void set_sender(::google::protobuf::int64 value);
+
+  // required int64 Recver = 4;
+  bool has_recver() const;
+  void clear_recver();
+  static const int kRecverFieldNumber = 4;
+  ::google::protobuf::int64 recver() const;
+  void set_recver(::google::protobuf::int64 value);
+
+  // required int32 MessageType = 6;
+  bool has_messagetype() const;
+  void clear_messagetype();
+  static const int kMessageTypeFieldNumber = 6;
+  ::google::protobuf::int32 messagetype() const;
+  void set_messagetype(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:message.W_C_ChatMessage)
+ private:
+  void set_has_packethead();
+  void clear_has_packethead();
+  void set_has_sender();
+  void clear_has_sender();
+  void set_has_sendername();
+  void clear_has_sendername();
+  void set_has_recver();
+  void clear_has_recver();
+  void set_has_recvername();
+  void clear_has_recvername();
+  void set_has_messagetype();
+  void clear_has_messagetype();
+  void set_has_message();
+  void clear_has_message();
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr sendername_;
+  ::google::protobuf::internal::ArenaStringPtr recvername_;
+  ::google::protobuf::internal::ArenaStringPtr message_;
+  ::message::Ipacket* packethead_;
+  ::google::protobuf::int64 sender_;
+  ::google::protobuf::int64 recver_;
+  ::google::protobuf::int32 messagetype_;
+  friend struct ::protobuf_client_2eproto::TableStruct;
+  friend void ::protobuf_client_2eproto::InitDefaultsW_C_ChatMessageImpl();
 };
 // ===================================================================
 
@@ -1064,13 +1305,13 @@ class C_W_ChatMessage : public ::google::protobuf::Message /* @@protoc_insertion
 
 // required .message.Ipacket PacketHead = 1;
 inline bool C_A_LoginRequest::has_packethead() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void C_A_LoginRequest::set_has_packethead() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void C_A_LoginRequest::clear_has_packethead() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline const ::message::Ipacket& C_A_LoginRequest::packethead() const {
   const ::message::Ipacket* p = packethead_;
@@ -1240,13 +1481,13 @@ inline void C_A_LoginRequest::set_allocated_buildno(::std::string* buildno) {
 
 // required int32 SocketId = 4;
 inline bool C_A_LoginRequest::has_socketid() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void C_A_LoginRequest::set_has_socketid() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void C_A_LoginRequest::clear_has_socketid() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void C_A_LoginRequest::clear_socketid() {
   socketid_ = 0;
@@ -1260,6 +1501,69 @@ inline void C_A_LoginRequest::set_socketid(::google::protobuf::int32 value) {
   set_has_socketid();
   socketid_ = value;
   // @@protoc_insertion_point(field_set:message.C_A_LoginRequest.SocketId)
+}
+
+// required string Password = 5;
+inline bool C_A_LoginRequest::has_password() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void C_A_LoginRequest::set_has_password() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void C_A_LoginRequest::clear_has_password() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void C_A_LoginRequest::clear_password() {
+  password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_password();
+}
+inline const ::std::string& C_A_LoginRequest::password() const {
+  // @@protoc_insertion_point(field_get:message.C_A_LoginRequest.Password)
+  return password_.GetNoArena();
+}
+inline void C_A_LoginRequest::set_password(const ::std::string& value) {
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.C_A_LoginRequest.Password)
+}
+#if LANG_CXX11
+inline void C_A_LoginRequest::set_password(::std::string&& value) {
+  set_has_password();
+  password_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:message.C_A_LoginRequest.Password)
+}
+#endif
+inline void C_A_LoginRequest::set_password(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.C_A_LoginRequest.Password)
+}
+inline void C_A_LoginRequest::set_password(const char* value, size_t size) {
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.C_A_LoginRequest.Password)
+}
+inline ::std::string* C_A_LoginRequest::mutable_password() {
+  set_has_password();
+  // @@protoc_insertion_point(field_mutable:message.C_A_LoginRequest.Password)
+  return password_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* C_A_LoginRequest::release_password() {
+  // @@protoc_insertion_point(field_release:message.C_A_LoginRequest.Password)
+  clear_has_password();
+  return password_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void C_A_LoginRequest::set_allocated_password(::std::string* password) {
+  if (password != NULL) {
+    set_has_password();
+  } else {
+    clear_has_password();
+  }
+  password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
+  // @@protoc_insertion_point(field_set_allocated:message.C_A_LoginRequest.Password)
 }
 
 // -------------------------------------------------------------------
@@ -1326,13 +1630,13 @@ inline void C_A_LoginRequest1::set_allocated_login(::message::C_A_LoginRequest* 
 
 // required .message.Ipacket PacketHead = 1;
 inline bool C_A_RegisterRequest::has_packethead() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void C_A_RegisterRequest::set_has_packethead() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void C_A_RegisterRequest::clear_has_packethead() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline const ::message::Ipacket& C_A_RegisterRequest::packethead() const {
   const ::message::Ipacket* p = packethead_;
@@ -1439,13 +1743,13 @@ inline void C_A_RegisterRequest::set_allocated_accountname(::std::string* accoun
 
 // required int32 SocketId = 3;
 inline bool C_A_RegisterRequest::has_socketid() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void C_A_RegisterRequest::set_has_socketid() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void C_A_RegisterRequest::clear_has_socketid() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void C_A_RegisterRequest::clear_socketid() {
   socketid_ = 0;
@@ -1459,6 +1763,69 @@ inline void C_A_RegisterRequest::set_socketid(::google::protobuf::int32 value) {
   set_has_socketid();
   socketid_ = value;
   // @@protoc_insertion_point(field_set:message.C_A_RegisterRequest.SocketId)
+}
+
+// required string Password = 4;
+inline bool C_A_RegisterRequest::has_password() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void C_A_RegisterRequest::set_has_password() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void C_A_RegisterRequest::clear_has_password() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void C_A_RegisterRequest::clear_password() {
+  password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_password();
+}
+inline const ::std::string& C_A_RegisterRequest::password() const {
+  // @@protoc_insertion_point(field_get:message.C_A_RegisterRequest.Password)
+  return password_.GetNoArena();
+}
+inline void C_A_RegisterRequest::set_password(const ::std::string& value) {
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.C_A_RegisterRequest.Password)
+}
+#if LANG_CXX11
+inline void C_A_RegisterRequest::set_password(::std::string&& value) {
+  set_has_password();
+  password_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:message.C_A_RegisterRequest.Password)
+}
+#endif
+inline void C_A_RegisterRequest::set_password(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.C_A_RegisterRequest.Password)
+}
+inline void C_A_RegisterRequest::set_password(const char* value, size_t size) {
+  set_has_password();
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.C_A_RegisterRequest.Password)
+}
+inline ::std::string* C_A_RegisterRequest::mutable_password() {
+  set_has_password();
+  // @@protoc_insertion_point(field_mutable:message.C_A_RegisterRequest.Password)
+  return password_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* C_A_RegisterRequest::release_password() {
+  // @@protoc_insertion_point(field_release:message.C_A_RegisterRequest.Password)
+  clear_has_password();
+  return password_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void C_A_RegisterRequest::set_allocated_password(::std::string* password) {
+  if (password != NULL) {
+    set_has_password();
+  } else {
+    clear_has_password();
+  }
+  password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
+  // @@protoc_insertion_point(field_set_allocated:message.C_A_RegisterRequest.Password)
 }
 
 // -------------------------------------------------------------------
@@ -1656,7 +2023,7 @@ inline void C_W_Game_LoginRequset::set_allocated_packethead(::message::Ipacket* 
   // @@protoc_insertion_point(field_set_allocated:message.C_W_Game_LoginRequset.PacketHead)
 }
 
-// required int32 PlayerId = 2;
+// required int64 PlayerId = 2;
 inline bool C_W_Game_LoginRequset::has_playerid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1667,14 +2034,14 @@ inline void C_W_Game_LoginRequset::clear_has_playerid() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void C_W_Game_LoginRequset::clear_playerid() {
-  playerid_ = 0;
+  playerid_ = GOOGLE_LONGLONG(0);
   clear_has_playerid();
 }
-inline ::google::protobuf::int32 C_W_Game_LoginRequset::playerid() const {
+inline ::google::protobuf::int64 C_W_Game_LoginRequset::playerid() const {
   // @@protoc_insertion_point(field_get:message.C_W_Game_LoginRequset.PlayerId)
   return playerid_;
 }
-inline void C_W_Game_LoginRequset::set_playerid(::google::protobuf::int32 value) {
+inline void C_W_Game_LoginRequset::set_playerid(::google::protobuf::int64 value) {
   set_has_playerid();
   playerid_ = value;
   // @@protoc_insertion_point(field_set:message.C_W_Game_LoginRequset.PlayerId)
@@ -1788,7 +2155,7 @@ inline void C_W_ChatMessage::set_allocated_packethead(::message::Ipacket* packet
   // @@protoc_insertion_point(field_set_allocated:message.C_W_ChatMessage.PacketHead)
 }
 
-// required int32 Sender = 2;
+// required int64 Sender = 2;
 inline bool C_W_ChatMessage::has_sender() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -1799,20 +2166,20 @@ inline void C_W_ChatMessage::clear_has_sender() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void C_W_ChatMessage::clear_sender() {
-  sender_ = 0;
+  sender_ = GOOGLE_LONGLONG(0);
   clear_has_sender();
 }
-inline ::google::protobuf::int32 C_W_ChatMessage::sender() const {
+inline ::google::protobuf::int64 C_W_ChatMessage::sender() const {
   // @@protoc_insertion_point(field_get:message.C_W_ChatMessage.Sender)
   return sender_;
 }
-inline void C_W_ChatMessage::set_sender(::google::protobuf::int32 value) {
+inline void C_W_ChatMessage::set_sender(::google::protobuf::int64 value) {
   set_has_sender();
   sender_ = value;
   // @@protoc_insertion_point(field_set:message.C_W_ChatMessage.Sender)
 }
 
-// required int32 Recver = 3;
+// required int64 Recver = 3;
 inline bool C_W_ChatMessage::has_recver() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -1823,14 +2190,14 @@ inline void C_W_ChatMessage::clear_has_recver() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void C_W_ChatMessage::clear_recver() {
-  recver_ = 0;
+  recver_ = GOOGLE_LONGLONG(0);
   clear_has_recver();
 }
-inline ::google::protobuf::int32 C_W_ChatMessage::recver() const {
+inline ::google::protobuf::int64 C_W_ChatMessage::recver() const {
   // @@protoc_insertion_point(field_get:message.C_W_ChatMessage.Recver)
   return recver_;
 }
-inline void C_W_ChatMessage::set_recver(::google::protobuf::int32 value) {
+inline void C_W_ChatMessage::set_recver(::google::protobuf::int64 value) {
   set_has_recver();
   recver_ = value;
   // @@protoc_insertion_point(field_set:message.C_W_ChatMessage.Recver)
@@ -1923,9 +2290,326 @@ inline void C_W_ChatMessage::set_allocated_message(::std::string* message) {
   // @@protoc_insertion_point(field_set_allocated:message.C_W_ChatMessage.Message)
 }
 
+// -------------------------------------------------------------------
+
+// W_C_ChatMessage
+
+// required .message.Ipacket PacketHead = 1;
+inline bool W_C_ChatMessage::has_packethead() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void W_C_ChatMessage::set_has_packethead() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void W_C_ChatMessage::clear_has_packethead() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const ::message::Ipacket& W_C_ChatMessage::packethead() const {
+  const ::message::Ipacket* p = packethead_;
+  // @@protoc_insertion_point(field_get:message.W_C_ChatMessage.PacketHead)
+  return p != NULL ? *p : *reinterpret_cast<const ::message::Ipacket*>(
+      &::message::_Ipacket_default_instance_);
+}
+inline ::message::Ipacket* W_C_ChatMessage::release_packethead() {
+  // @@protoc_insertion_point(field_release:message.W_C_ChatMessage.PacketHead)
+  clear_has_packethead();
+  ::message::Ipacket* temp = packethead_;
+  packethead_ = NULL;
+  return temp;
+}
+inline ::message::Ipacket* W_C_ChatMessage::mutable_packethead() {
+  set_has_packethead();
+  if (packethead_ == NULL) {
+    packethead_ = new ::message::Ipacket;
+  }
+  // @@protoc_insertion_point(field_mutable:message.W_C_ChatMessage.PacketHead)
+  return packethead_;
+}
+inline void W_C_ChatMessage::set_allocated_packethead(::message::Ipacket* packethead) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(packethead_);
+  }
+  if (packethead) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      packethead = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, packethead, submessage_arena);
+    }
+    set_has_packethead();
+  } else {
+    clear_has_packethead();
+  }
+  packethead_ = packethead;
+  // @@protoc_insertion_point(field_set_allocated:message.W_C_ChatMessage.PacketHead)
+}
+
+// required int64 Sender = 2;
+inline bool W_C_ChatMessage::has_sender() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void W_C_ChatMessage::set_has_sender() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void W_C_ChatMessage::clear_has_sender() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void W_C_ChatMessage::clear_sender() {
+  sender_ = GOOGLE_LONGLONG(0);
+  clear_has_sender();
+}
+inline ::google::protobuf::int64 W_C_ChatMessage::sender() const {
+  // @@protoc_insertion_point(field_get:message.W_C_ChatMessage.Sender)
+  return sender_;
+}
+inline void W_C_ChatMessage::set_sender(::google::protobuf::int64 value) {
+  set_has_sender();
+  sender_ = value;
+  // @@protoc_insertion_point(field_set:message.W_C_ChatMessage.Sender)
+}
+
+// required string SenderName = 3;
+inline bool W_C_ChatMessage::has_sendername() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void W_C_ChatMessage::set_has_sendername() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void W_C_ChatMessage::clear_has_sendername() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void W_C_ChatMessage::clear_sendername() {
+  sendername_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_sendername();
+}
+inline const ::std::string& W_C_ChatMessage::sendername() const {
+  // @@protoc_insertion_point(field_get:message.W_C_ChatMessage.SenderName)
+  return sendername_.GetNoArena();
+}
+inline void W_C_ChatMessage::set_sendername(const ::std::string& value) {
+  set_has_sendername();
+  sendername_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.W_C_ChatMessage.SenderName)
+}
+#if LANG_CXX11
+inline void W_C_ChatMessage::set_sendername(::std::string&& value) {
+  set_has_sendername();
+  sendername_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:message.W_C_ChatMessage.SenderName)
+}
+#endif
+inline void W_C_ChatMessage::set_sendername(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_sendername();
+  sendername_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.W_C_ChatMessage.SenderName)
+}
+inline void W_C_ChatMessage::set_sendername(const char* value, size_t size) {
+  set_has_sendername();
+  sendername_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.W_C_ChatMessage.SenderName)
+}
+inline ::std::string* W_C_ChatMessage::mutable_sendername() {
+  set_has_sendername();
+  // @@protoc_insertion_point(field_mutable:message.W_C_ChatMessage.SenderName)
+  return sendername_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* W_C_ChatMessage::release_sendername() {
+  // @@protoc_insertion_point(field_release:message.W_C_ChatMessage.SenderName)
+  clear_has_sendername();
+  return sendername_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void W_C_ChatMessage::set_allocated_sendername(::std::string* sendername) {
+  if (sendername != NULL) {
+    set_has_sendername();
+  } else {
+    clear_has_sendername();
+  }
+  sendername_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), sendername);
+  // @@protoc_insertion_point(field_set_allocated:message.W_C_ChatMessage.SenderName)
+}
+
+// required int64 Recver = 4;
+inline bool W_C_ChatMessage::has_recver() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void W_C_ChatMessage::set_has_recver() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void W_C_ChatMessage::clear_has_recver() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void W_C_ChatMessage::clear_recver() {
+  recver_ = GOOGLE_LONGLONG(0);
+  clear_has_recver();
+}
+inline ::google::protobuf::int64 W_C_ChatMessage::recver() const {
+  // @@protoc_insertion_point(field_get:message.W_C_ChatMessage.Recver)
+  return recver_;
+}
+inline void W_C_ChatMessage::set_recver(::google::protobuf::int64 value) {
+  set_has_recver();
+  recver_ = value;
+  // @@protoc_insertion_point(field_set:message.W_C_ChatMessage.Recver)
+}
+
+// required string RecverName = 5;
+inline bool W_C_ChatMessage::has_recvername() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void W_C_ChatMessage::set_has_recvername() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void W_C_ChatMessage::clear_has_recvername() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void W_C_ChatMessage::clear_recvername() {
+  recvername_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_recvername();
+}
+inline const ::std::string& W_C_ChatMessage::recvername() const {
+  // @@protoc_insertion_point(field_get:message.W_C_ChatMessage.RecverName)
+  return recvername_.GetNoArena();
+}
+inline void W_C_ChatMessage::set_recvername(const ::std::string& value) {
+  set_has_recvername();
+  recvername_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.W_C_ChatMessage.RecverName)
+}
+#if LANG_CXX11
+inline void W_C_ChatMessage::set_recvername(::std::string&& value) {
+  set_has_recvername();
+  recvername_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:message.W_C_ChatMessage.RecverName)
+}
+#endif
+inline void W_C_ChatMessage::set_recvername(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_recvername();
+  recvername_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.W_C_ChatMessage.RecverName)
+}
+inline void W_C_ChatMessage::set_recvername(const char* value, size_t size) {
+  set_has_recvername();
+  recvername_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.W_C_ChatMessage.RecverName)
+}
+inline ::std::string* W_C_ChatMessage::mutable_recvername() {
+  set_has_recvername();
+  // @@protoc_insertion_point(field_mutable:message.W_C_ChatMessage.RecverName)
+  return recvername_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* W_C_ChatMessage::release_recvername() {
+  // @@protoc_insertion_point(field_release:message.W_C_ChatMessage.RecverName)
+  clear_has_recvername();
+  return recvername_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void W_C_ChatMessage::set_allocated_recvername(::std::string* recvername) {
+  if (recvername != NULL) {
+    set_has_recvername();
+  } else {
+    clear_has_recvername();
+  }
+  recvername_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), recvername);
+  // @@protoc_insertion_point(field_set_allocated:message.W_C_ChatMessage.RecverName)
+}
+
+// required int32 MessageType = 6;
+inline bool W_C_ChatMessage::has_messagetype() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void W_C_ChatMessage::set_has_messagetype() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void W_C_ChatMessage::clear_has_messagetype() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void W_C_ChatMessage::clear_messagetype() {
+  messagetype_ = 0;
+  clear_has_messagetype();
+}
+inline ::google::protobuf::int32 W_C_ChatMessage::messagetype() const {
+  // @@protoc_insertion_point(field_get:message.W_C_ChatMessage.MessageType)
+  return messagetype_;
+}
+inline void W_C_ChatMessage::set_messagetype(::google::protobuf::int32 value) {
+  set_has_messagetype();
+  messagetype_ = value;
+  // @@protoc_insertion_point(field_set:message.W_C_ChatMessage.MessageType)
+}
+
+// required string Message = 7;
+inline bool W_C_ChatMessage::has_message() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void W_C_ChatMessage::set_has_message() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void W_C_ChatMessage::clear_has_message() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void W_C_ChatMessage::clear_message() {
+  message_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_message();
+}
+inline const ::std::string& W_C_ChatMessage::message() const {
+  // @@protoc_insertion_point(field_get:message.W_C_ChatMessage.Message)
+  return message_.GetNoArena();
+}
+inline void W_C_ChatMessage::set_message(const ::std::string& value) {
+  set_has_message();
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.W_C_ChatMessage.Message)
+}
+#if LANG_CXX11
+inline void W_C_ChatMessage::set_message(::std::string&& value) {
+  set_has_message();
+  message_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:message.W_C_ChatMessage.Message)
+}
+#endif
+inline void W_C_ChatMessage::set_message(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_message();
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.W_C_ChatMessage.Message)
+}
+inline void W_C_ChatMessage::set_message(const char* value, size_t size) {
+  set_has_message();
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.W_C_ChatMessage.Message)
+}
+inline ::std::string* W_C_ChatMessage::mutable_message() {
+  set_has_message();
+  // @@protoc_insertion_point(field_mutable:message.W_C_ChatMessage.Message)
+  return message_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* W_C_ChatMessage::release_message() {
+  // @@protoc_insertion_point(field_release:message.W_C_ChatMessage.Message)
+  clear_has_message();
+  return message_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void W_C_ChatMessage::set_allocated_message(::std::string* message) {
+  if (message != NULL) {
+    set_has_message();
+  } else {
+    clear_has_message();
+  }
+  message_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), message);
+  // @@protoc_insertion_point(field_set_allocated:message.W_C_ChatMessage.Message)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

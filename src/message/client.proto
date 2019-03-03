@@ -7,7 +7,7 @@ required Ipacket PacketHead = 1;
 required string AccountName = 2;
 required string BuildNo = 3;
 required int32  SocketId = 4;
-//required string Password = 5;
+required string Password = 5;
 }
 
 message C_A_LoginRequest1{
@@ -18,7 +18,7 @@ message C_A_RegisterRequest{
 required Ipacket PacketHead = 1;
 required string AccountName = 2;
 required int32  SocketId = 3;
-//required string Password = 4;
+required string Password = 4;
 }
 
 message C_W_CreatePlayerRequest{

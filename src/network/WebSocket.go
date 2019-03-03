@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"sync"
 	"sync/atomic"
+
 	"golang.org/x/net/websocket"
 )
 
@@ -31,16 +32,16 @@ type WebSocket struct {
 	m_bCanAccept    bool
 	m_bNagle        bool
 	m_ClientList    map[int]*WebSocketClient
-	m_ClientLocker	*sync.RWMutex
+	m_ClientLocker  *sync.RWMutex
 	//m_ClientChan 	chan WClientChan
-	m_Pool          sync.Pool
-	m_Lock          sync.Mutex
+	m_Pool sync.Pool
+	m_Lock sync.Mutex
 }
 
-type WClientChan struct{
+type WClientChan struct {
 	pClient *WebSocketClient
-	state int
-	id int
+	state   int
+	id      int
 }
 
 func (this *WebSocket) Init(ip string, port int) bool {
@@ -106,6 +107,9 @@ func (this *WebSocket) AddClinet(tcpConn *websocket.Conn, addr string, connectTy
 		pClient.m_pServer = this
 		pClient.m_ClientId = this.AssignClientId()
 		pClient.m_WebConn = tcpConn
+
+		pClient.m_WebConn.PayloadType = websocket.BinaryFrame
+
 		pClient.m_sIP = addr
 		pClient.SetConnectType(connectType)
 		this.m_ClientLocker.Lock()
@@ -140,9 +144,9 @@ func (this *WebSocket) DelClinet(pClient *WebSocketClient) bool {
 	return true
 }
 
-func (this *WebSocket) StopClient(id int){
+func (this *WebSocket) StopClient(id int) {
 	pClinet := this.GetClientById(id)
-	if pClinet != nil{
+	if pClinet != nil {
 		pClinet.Stop()
 	}
 	/*var clientChan WClientChan
@@ -169,17 +173,17 @@ func (this *WebSocket) Stop() bool {
 	return true
 }
 
-func (this *WebSocket) SendByID(id int, buff  []byte) int{
+func (this *WebSocket) SendByID(id int, buff []byte) int {
 	pClient := this.GetClientById(id)
-	if pClient != nil{
+	if pClient != nil {
 		pClient.Send(base.SetTcpEnd(buff))
 	}
-	return  0
+	return 0
 }
 
-func (this *WebSocket) SendMsgByID(id int, funcName string, params ...interface{}){
+func (this *WebSocket) SendMsgByID(id int, funcName string, params ...interface{}) {
 	pClient := this.GetClientById(id)
-	if pClient != nil{
+	if pClient != nil {
 		pClient.Send(base.SetTcpEnd(base.GetPacket(funcName, params...)))
 	}
 }
@@ -202,8 +206,8 @@ func (this *WebSocket) Close() {
 	//this.m_Pool.Put(this)
 }
 
-func (this *WebSocket)wserverRoutine(conn *websocket.Conn){
-	fmt.Printf("客户端：%s已连接！\n", conn.RemoteAddr().String())
+func (this *WebSocket) wserverRoutine(conn *websocket.Conn) {
+	fmt.Printf("客户端：%s已连接WebSocket！\n", conn.RemoteAddr().String())
 	whandleConn(this, conn, conn.RemoteAddr().String())
 }
 

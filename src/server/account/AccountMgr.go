@@ -11,9 +11,9 @@ type (
 	AccountMgr struct {
 		actor.Actor
 
-		m_AccountMap map[int64] *Account
-		m_AccountNameMap map[string] *Account
-		m_db *sql.DB
+		m_AccountMap     map[int64]*Account
+		m_AccountNameMap map[string]*Account
+		m_db             *sql.DB
 	}
 
 	IAccountMgr interface {
@@ -30,11 +30,11 @@ var (
 	ACCOUNTMGR AccountMgr
 )
 
-func (this* AccountMgr) Init(num int){
+func (this *AccountMgr) Init(num int) {
 	this.m_db = SERVER.GetDB()
 	this.Actor.Init(1000)
-	this.m_AccountMap = make(map[int64] *Account)
-	this.m_AccountNameMap = make(map[string] *Account)
+	this.m_AccountMap = make(map[int64]*Account)
+	this.m_AccountNameMap = make(map[string]*Account)
 	//this.RegisterTimer(1000 * 1000 * 1000, this.Update)//定时器
 	//账号登录处理
 	this.RegisterCall("Account_Login", func(accountName string, accountId int64, socketId, id int) {
@@ -47,7 +47,7 @@ func (this* AccountMgr) Init(num int){
 
 		pAccount := this.GetAccount(accountId)
 		if pAccount != nil {
-			if pAccount.CheckLoginTime(){
+			if pAccount.CheckLoginTime() {
 				return
 			}
 
@@ -67,15 +67,15 @@ func (this* AccountMgr) Init(num int){
 	this.Actor.Start()
 }
 
-func (this *AccountMgr) GetAccount(accountId int64) *Account{
+func (this *AccountMgr) GetAccount(accountId int64) *Account {
 	pAccount, exist := this.m_AccountMap[accountId]
-	if exist{
+	if exist {
 		return pAccount
 	}
 	return nil
 }
 
-func loadAccount(row db.IRow, a *AccountDB){
+func loadAccount(row db.IRow, a *AccountDB) {
 	a.AccountId = row.Int64("account_id")
 	a.AccountName = row.String("account_name")
 	a.LoginIp = row.String("login_ip")
@@ -84,7 +84,7 @@ func loadAccount(row db.IRow, a *AccountDB){
 	a.LogoutTime = row.Time("logout_time")
 }
 
-func (this *AccountMgr) AddAccount(accountId int64) *Account{
+func (this *AccountMgr) AddAccount(accountId int64) *Account {
 	LoadAccountDB := func(accountId int64) *AccountDB {
 		rows, err := this.m_db.Query(fmt.Sprintf("select account_id, account_name, status, login_time, logout_time, login_ip from tbl_account where account_id=%d", accountId))
 		rs := db.Query(rows)
@@ -94,11 +94,11 @@ func (this *AccountMgr) AddAccount(accountId int64) *Account{
 			loadAccount(rs.Row(), pAccountDB)
 			return pAccountDB
 		}
-		return  nil
+		return nil
 	}
 
-	pAccountDB  := LoadAccountDB(accountId)
-	if pAccountDB != nil{
+	pAccountDB := LoadAccountDB(accountId)
+	if pAccountDB != nil {
 		pAccount := &Account{}
 		pAccount.AccountDB = *pAccountDB
 		this.m_AccountMap[accountId] = pAccount
@@ -109,9 +109,9 @@ func (this *AccountMgr) AddAccount(accountId int64) *Account{
 	return nil
 }
 
-func (this *AccountMgr) RemoveAccount(accountId int64, socketId int){
+func (this *AccountMgr) RemoveAccount(accountId int64, socketId int) {
 	pAccount := this.GetAccount(accountId)
-	if pAccount != nil{
+	if pAccount != nil {
 		delete(this.m_AccountNameMap, pAccount.AccountName)
 		delete(this.m_AccountMap, accountId)
 		SERVER.GetLog().Printf("账号[%d]断开链接", accountId)
@@ -119,6 +119,6 @@ func (this *AccountMgr) RemoveAccount(accountId int64, socketId int){
 	}
 }
 
-func (this *AccountMgr) KickAccount(accountId int64){
+func (this *AccountMgr) KickAccount(accountId int64) {
 
 }
