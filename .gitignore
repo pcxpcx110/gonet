@@ -122,3 +122,9 @@
 /src/golang.org/x/lint
 /src/golang.org/x/net
 /src/golang.org/x/tools
+/bin/log/*.log
+/pkg/windows_amd64/*.a
+/pkg/windows_amd64/go_project/*.a
+/pkg/windows_amd64/server/*.a
+/pkg/windows_amd64/server/world/*.a
+/pkg/windows_amd64/vendor/github.com/go-sql-driver/*.a

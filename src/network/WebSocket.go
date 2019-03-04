@@ -106,11 +106,10 @@ func (this *WebSocket) AddClinet(tcpConn *websocket.Conn, addr string, connectTy
 		pClient.Socket.Init("", 0)
 		pClient.m_pServer = this
 		pClient.m_ClientId = this.AssignClientId()
-		pClient.m_WebConn = tcpConn
-
-		pClient.m_WebConn.PayloadType = websocket.BinaryFrame
-
 		pClient.m_sIP = addr
+		tcpConn.PayloadType = websocket.BinaryFrame
+		tcpConn.
+			pClient.SetTcpConn(tcpConn)
 		pClient.SetConnectType(connectType)
 		this.m_ClientLocker.Lock()
 		this.m_ClientList[pClient.m_ClientId] = pClient
@@ -207,7 +206,7 @@ func (this *WebSocket) Close() {
 }
 
 func (this *WebSocket) wserverRoutine(conn *websocket.Conn) {
-	fmt.Printf("客户端：%s已连接WebSocket！\n", conn.RemoteAddr().String())
+	fmt.Printf("客户端：%s已连接！\n", conn.RemoteAddr().String())
 	whandleConn(this, conn, conn.RemoteAddr().String())
 }
 

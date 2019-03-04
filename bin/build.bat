@@ -5,3 +5,5 @@ go install
 cd ./../client
 go build
 go install
+
+cd ./../../bin
