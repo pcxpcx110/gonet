@@ -108,8 +108,7 @@ func (this *WebSocket) AddClinet(tcpConn *websocket.Conn, addr string, connectTy
 		pClient.m_ClientId = this.AssignClientId()
 		pClient.m_sIP = addr
 		tcpConn.PayloadType = websocket.BinaryFrame
-		tcpConn.
-			pClient.SetTcpConn(tcpConn)
+		pClient.SetTcpConn(tcpConn)
 		pClient.SetConnectType(connectType)
 		this.m_ClientLocker.Lock()
 		this.m_ClientList[pClient.m_ClientId] = pClient
