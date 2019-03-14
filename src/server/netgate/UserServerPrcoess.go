@@ -29,15 +29,15 @@ func (this *UserServerProcess) PacketFunc(id int, buff []byte) bool {
 		return false
 	}*/
 
-	fmt.Println("UserServerProcess....PacketFunc.....")
+	// fmt.Println("UserServerProcess....PacketFunc.....")
 	var io actor.CallIO
 	io.Buff = buff
 	io.SocketId = id
 
 	bitstream := base.NewBitStream(io.Buff, len(io.Buff))
 	funcName := bitstream.ReadString()
-	funcName = strings.ToLower(funcName)
 	fmt.Println("UserServerProcess...funcName....................", funcName)
+	funcName = strings.ToLower(funcName)
 	pFunc := this.FindCall(funcName)
 	fmt.Println("UserServerProcess...pFunc....................", pFunc)
 	if pFunc != nil {

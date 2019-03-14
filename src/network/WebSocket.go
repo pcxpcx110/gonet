@@ -81,7 +81,7 @@ func (this *WebSocket) Start() bool {
 	//defer ln.Close()
 	this.m_nState = SSF_ACCEPT
 	//go wtimeRoutine(this)
-	return true
+return true
 }
 
 func (this *WebSocket) AssignClientId() int {

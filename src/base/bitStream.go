@@ -11,12 +11,12 @@ package base
 //----------------------------------------
 
 const (
-	Bit8       = 8
-	Bit16      = 16
-	Bit32      = 32
-	Bit64      = 64
-	Bit128     = 128
-	MAX_PACKET = 128 * 1024
+	Bit8             = 8
+	Bit16            = 16
+	Bit32            = 32
+	Bit64            = 64
+	Bit128           = 128
+	MAX_PACKET       = 128 * 1024
 	PACKET_HEAD_SIZE = 4
 )
 
@@ -282,7 +282,6 @@ func (this *BitStream) WriteFlag(val bool) bool {
 		Assert(false, "Out of range write")
 		return false
 	}
-
 	if val {
 		this.dataPtr[(this.flagNum >> 3)] |= (1 << uint32(this.flagNum&0x7))
 	} else {

@@ -3,8 +3,8 @@ package netgate
 import (
 	"actor"
 	"message"
-	"strconv"
 	"server/common"
+	"strconv"
 )
 
 type (
@@ -20,17 +20,17 @@ type (
 	}
 )
 
-func (this * AccountProcess)RegisterServer(ServerType int, Ip string, Port int)  {
-	SERVER.GetAccountSocket().SendMsg("COMMON_RegisterRequest",ServerType, Ip, Port)
+func (this *AccountProcess) RegisterServer(ServerType int, Ip string, Port int) {
+	SERVER.GetAccountSocket().SendMsg("COMMON_RegisterRequest", ServerType, Ip, Port)
 }
 
 func (this *AccountProcess) Init(num int) {
 	this.Actor.Init(num)
 	this.m_LostTimer = common.NewSimpleTimer(10)
 	this.m_LostTimer.Start()
-	this.RegisterTimer(1 * 1000 * 1000 * 1000, this.Update)
+	this.RegisterTimer(1*1000*1000*1000, this.Update)
 	this.RegisterCall("COMMON_RegisterRequest", func() {
-		port,_:=strconv.Atoi(UserNetPort)
+		port, _ := strconv.Atoi(UserNetPort)
 		this.RegisterServer(int(message.SERVICE_GATESERVER), UserNetIP, port)
 	})
 
@@ -54,14 +54,15 @@ func (this *AccountProcess) Init(num int) {
 
 	this.RegisterCall("A_C_LoginRequest", func(packet *message.A_C_LoginRequest) {
 		buff := message.Encode(packet)
+		// fmt.Println("A_C_LoginRequest.....................", buff)
 		SERVER.GetServer().SendByID(int(*packet.SocketId), buff)
 	})
 
 	this.Actor.Start()
 }
 
-func (this* AccountProcess) Update(){
-	if this.m_LostTimer.CheckTimer(){
+func (this *AccountProcess) Update() {
+	if this.m_LostTimer.CheckTimer() {
 		SERVER.GetAccountSocket().Start()
 	}
 }

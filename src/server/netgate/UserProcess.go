@@ -80,8 +80,6 @@ func (this *UserPrcoess) PacketFunc(socketid int, buff []byte) bool {
 		}
 	}()
 
-	fmt.Println("UserPrcoess......PacketFunc...................")
-
 	packetId, data := message.Decode(buff)
 	packet := message.GetPakcet(packetId)
 	if packet == nil {
@@ -126,6 +124,7 @@ func (this *UserPrcoess) PacketFunc(socketid int, buff []byte) bool {
 		return true
 	}
 
+	fmt.Println("*packetHead.DestServerType..............", *packetHead.DestServerType)
 	if *packetHead.DestServerType == int32(message.SERVICE_WORLDSERVER) {
 		this.SwtichSendToWorld(socketid, packetName, packetHead, bitstream.GetBuffer())
 	} else if *packetHead.DestServerType == int32(message.SERVICE_ACCOUNTSERVER) {

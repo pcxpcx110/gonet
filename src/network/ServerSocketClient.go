@@ -19,8 +19,8 @@ type IServerSocketClient interface {
 
 type ServerSocketClient struct {
 	Socket
-	m_WriteChan   chan []byte
-	m_pServer     *ServerSocket
+	m_WriteChan chan []byte
+	m_pServer   *ServerSocket
 }
 
 func handleError(err error) {
@@ -31,7 +31,7 @@ func handleError(err error) {
 }
 
 func (this *ServerSocketClient) Start() bool {
-	if this.m_nState != SSF_SHUT_DOWN{
+	if this.m_nState != SSF_SHUT_DOWN {
 		return false
 	}
 
@@ -41,6 +41,7 @@ func (this *ServerSocketClient) Start() bool {
 
 	this.m_WriteChan = make(chan []byte, MAX_WRITE_CHAN)
 	this.m_nState = SSF_CONNECT
+	//func (*TCPConn) SetNoDelay 设置系统是否延迟发送小包数据，默认是true，表示数据在Write后立即发送。如果只关注每秒传输的量而不是打个packet延迟，可以考虑设置为false，这样可以减少系统调用，但是小包可能被延迟到某个时刻才发送。
 	this.m_Conn.(*net.TCPConn).SetNoDelay(true)
 	//this.m_Conn.SetKeepAlive(true)
 	//this.m_Conn.SetKeepAlivePeriod(5*time.Second)
@@ -51,14 +52,14 @@ func (this *ServerSocketClient) Start() bool {
 
 func (this *ServerSocketClient) Send(buff []byte) int {
 	defer func() {
-		if err := recover(); err != nil{
+		if err := recover(); err != nil {
 			fmt.Println("ServerSocketClient Send", err)
 		}
 	}()
 
-	if len(buff) > this.m_MaxSendBufferSize{
-		log.Print(" SendError size",len(buff))
-		return  0
+	if len(buff) > this.m_MaxSendBufferSize {
+		log.Print(" SendError size", len(buff))
+		return 0
 	}
 
 	n, err := this.m_Conn.Write(buff)
@@ -70,10 +71,10 @@ func (this *ServerSocketClient) Send(buff []byte) int {
 	return 0
 }
 
-func (this *ServerSocketClient) ReceivePacket(Id int, buff []byte){
+func (this *ServerSocketClient) ReceivePacket(Id int, buff []byte) {
 	if this.m_PacketFuncList.Len() > 0 {
 		this.Socket.ReceivePacket(this.m_ClientId, buff)
-	}else if (this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0){
+	} else if this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0 {
 		this.m_pServer.Socket.ReceivePacket(this.m_ClientId, buff)
 	}
 }
@@ -82,7 +83,7 @@ func (this *ServerSocketClient) OnNetFail(error int) {
 	this.Stop()
 	if this.m_PacketFuncList.Len() > 0 {
 		this.CallMsg("DISCONNECT", this.m_ClientId)
-	}else if (this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0){
+	} else if this.m_pServer != nil && this.m_pServer.m_PacketFuncList.Len() > 0 {
 		this.m_pServer.CallMsg("DISCONNECT", this.m_ClientId)
 	}
 }
@@ -103,13 +104,13 @@ func (this *ServerSocketClient) SendNoBlock(buff []byte) {
 		}
 	}()
 
-	if this.m_nConnectType == CLIENT_CONNECT{
+	if this.m_nConnectType == CLIENT_CONNECT {
 		select {
 		case this.m_WriteChan <- buff: //chan满后再写即阻塞，select进入default分支报错
 		default:
 			break
 		}
-	}else{
+	} else {
 		this.m_WriteChan <- buff
 	}
 }
@@ -156,7 +157,7 @@ func serverclientRoutine(pClient *ServerSocketClient) bool {
 func serverclientWriteRoutine(pClient *ServerSocketClient) bool {
 	for {
 		select {
-		case buff := <-pClient.m_WriteChan :
+		case buff := <-pClient.m_WriteChan:
 			pClient.Send(buff)
 		}
 

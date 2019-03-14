@@ -123,7 +123,7 @@ func (this *EventProcess) Init(num int) {
 		}
 
 		if error != base.NONE_ERROR {
-			fmt.Println("返回登陆错误信息.....")
+			fmt.Println("返回登陆错误信息.....", error)
 			SendToClient(this.GetSocketId(), &message.A_C_LoginRequest{
 				PacketHead:  message.BuildPacketHead(0, 0),
 				Error:       proto.Int32(int32(error)),
